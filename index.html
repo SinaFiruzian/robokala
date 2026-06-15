@@ -38,6 +38,33 @@
             overflow-x: hidden;
         }
 
+        body {
+            --sb-track-color: #ffffff;
+            --sb-thumb-color: #5863fdbe;
+            --sb-size: 8px;
+        }
+
+        body::-webkit-scrollbar {
+            width: var(--sb-size)
+        }
+
+        body::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 4px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 4px;
+
+        }
+
+        @supports not selector(::-webkit-scrollbar) {
+            body {
+                scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+            }
+        }
+
         .nav-wrap {
             position: fixed;
             top: 0;
@@ -2112,9 +2139,10 @@
                     rgba(42, 123, 155, 0.18),
                     rgba(82, 24, 255, 0.12));
 
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(5px);
             padding: 40px 20px 20px;
-            border-radius: 20px 20px 0 0;
+            border-radius: 5rem 5rem 0 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.43);
         }
 
         .footer-wrap {

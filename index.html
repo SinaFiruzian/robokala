@@ -14,6 +14,9 @@
         html,
         body {
             font-family: sans-serif;
+            background: #2A7B9B;
+            background: linear-gradient(133deg, rgba(42, 123, 155, 0) 0%, rgba(87, 119, 199, 0) 26%, rgba(83, 116, 237, 0.4) 100%);
+
         }
 
         * {
@@ -22,15 +25,44 @@
 
         html,
         body {
+            background-color: #E5E5F7;
+            background-image: radial-gradient(circle, #444CF7 0.8px, transparent 0.8px);
+            background-size: 25px 10px;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
         }
 
         body {
-            background-color: #E9E6F7;
             min-height: 100vh;
             overflow-x: hidden;
+        }
+    
+        body {
+            --sb-track-color: #ffffff;
+            --sb-thumb-color: #7e87fb;
+            --sb-size: 8px;
+        }
+
+        body::-webkit-scrollbar {
+            width: var(--sb-size)
+        }
+
+        body::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 4px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 4px;
+
+        }
+
+        @supports not selector(::-webkit-scrollbar) {
+            body {
+                scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+            }
         }
 
         .nav-wrap {
@@ -61,7 +93,7 @@
             border-radius: 100px;
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
             transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
             white-space: nowrap;
@@ -90,7 +122,7 @@
             border-radius: 100px;
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
             transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
             white-space: nowrap;
@@ -231,7 +263,7 @@
 
         .hero {
             position: relative;
-            padding: 60px 0 48px;
+            padding: 25px 0 48px;
             color: white;
             display: flex;
             justify-content: center;
@@ -262,7 +294,7 @@
             border: 1px solid rgba(0, 0, 0, 0.147);
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 0 5px gray;
+            box-shadow: 0 0 5px rgb(0, 0, 0);
         }
 
         .card h3 {
@@ -339,8 +371,8 @@
             .island,
             .Byisland {
                 background: transparent !important;
-                border: 1px solid gray !important;
-                box-shadow: none !important;
+                border: 0px solid gray !important;
+                /* box-shadow: none !important; */
                 padding: 8px 1px;
                 display: flex;
                 align-items: center;
@@ -408,13 +440,14 @@
                 font-size: 13px;
                 font-weight: 500;
                 border-radius: 999px;
-                background: rgba(255, 255, 255, 0.85);
+                background: rgba(255, 255, 255, 0.217);
                 backdrop-filter: blur(14px);
                 -webkit-backdrop-filter: blur(14px);
                 border: 1px solid rgba(0, 0, 0, 0.08);
                 box-shadow: 0 0px 5px rgba(0, 0, 0, 0.327);
                 white-space: nowrap;
             }
+
             .links::before,
             .links::after {
                 content: "";
@@ -470,15 +503,18 @@
             .content {
                 padding: 90px 14px 60px;
             }
+
+
         }
     </style>
 
-    <!-- slider -->
+    <!-- slider ==> news/ADS -->
     <style>
         .container {
             position: absolute;
-            transform: translate(0%, 15%);
-            width: 900px;
+            transform: translate(0, -3%);
+            width: 100%;
+            margin: auto;
             height: 400px;
             background: #ffffff00;
             border-radius: 20px;
@@ -492,8 +528,9 @@
             width: 150px;
             height: 150px;
             position: absolute;
-            top: 50%;
-            transform: translate(0%, 20%);
+            bottom: 0;
+            left: 0;
+            transform: translate(-250%, 60%);
             border-radius: 50%;
             box-shadow: 0 0 10px #000000;
             background-position: 50% 50%;
@@ -601,7 +638,9 @@
             display: flex;
             flex-direction: row;
             gap: 20px;
-            right: 30%;
+            right: 10%;
+            bottom: 0;
+            transform: translate(8%, 100%);
             width: 100%;
             align-items: center;
             text-align: center;
@@ -624,18 +663,20 @@
             color: #000000;
             transform: scale(1.1);
             background: rgba(255, 255, 255, 0.878);
-        }
-
-        .next {
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-            font-weight: bold;
+            border-radius: 10px;
         }
 
         .prev {
             width: 40px;
             height: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .next {
+            width: 50px;
+            height: 50px;
             font-size: 20px;
             font-weight: bold;
         }
@@ -657,7 +698,6 @@
                 height: auto;
                 border-radius: 0;
                 border-radius: 10px;
-                padding: 100px 0px 20px;
             }
 
             .container .slide {
@@ -672,7 +712,7 @@
                 left: 0;
                 transform: none;
                 border-radius: 15px;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.584);
             }
 
             .slide .item:not(:first-child) {
@@ -700,14 +740,11 @@
                 bottom: 20px;
                 left: 0;
                 right: 0;
-
+                transform: translate(0);
                 display: flex;
                 justify-content: space-between;
-                /* مهم‌ترین تغییر */
                 align-items: center;
-
                 padding: 0 14px;
-                /* فاصله از لبه‌ها */
                 gap: 0;
             }
 
@@ -715,10 +752,208 @@
                 border-radius: 10px;
             }
 
-            .next,
-            .prev {
+            .prev,
+            .next {
+                display: block;
                 width: 38px;
                 height: 70px;
+            }
+        }
+
+        .side-card {
+            width: 240px;
+            min-height: 400px;
+            /* padding: 20px; */
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: .3s;
+        }
+
+        .side-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .side-card h3 {
+            font-size: 18px;
+            margin-bottom: 14px;
+            color: #111;
+        }
+
+        .side-card p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(0, 0, 0, 0.75);
+        }
+
+        .side-card a {
+            margin-top: auto;
+
+            text-decoration: none;
+
+            padding: 10px 16px;
+
+            border-radius: 12px;
+
+            background: rgba(98, 17, 237, 0.15);
+
+            color: #3000b3;
+            font-weight: 700;
+
+            text-align: center;
+
+            transition: .3s;
+        }
+
+        .side-card a:hover {
+            background: rgba(98, 17, 237, 0.25);
+        }
+
+        .con-card {
+            padding: 20px;
+            background: #2A7B9B;
+            background: linear-gradient(319deg, rgba(42, 123, 155, 0) 0%, rgba(87, 119, 199, 0) 26%, rgba(83, 116, 237, 0.4) 100%);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border: 1px solid rgba(218, 218, 218, 0.3);
+            box-shadow:
+                0 0 10px rgba(0, 0, 0, 0.317),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .con-card h3 {
+            margin-bottom: 18px;
+        }
+
+        .con-item {
+            padding: 12px 14px;
+
+            margin-bottom: 10px;
+
+            border-radius: 12px;
+
+            background: rgba(255, 255, 255, .35);
+
+            border: 1px solid rgba(255, 255, 255, .25);
+
+            font-size: 13px;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+        .con-item:hover {
+            background: rgba(255, 255, 255, .55);
+            transform: translateX(-3px);
+        }
+
+        .hero-layout {
+            width: min(1400px, 95%);
+            margin: auto;
+            padding-top: 8%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .hero {
+            flex: 1;
+        }
+
+        .more-con {
+            margin: auto;
+        }
+
+        .con-card .more-con {
+            font-weight: bold;
+            transition: transform .3s ease;
+        }
+
+        .con-card:hover .more-con {
+            transform: scale(1.3) rotate(360deg);
+        }
+
+        .side-right {
+            background: #2A7B9B;
+            background: linear-gradient(319deg, rgba(42, 123, 155, 0) 0%, rgba(87, 119, 199, 0) 26%, rgba(83, 116, 237, 0.4) 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 2%;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border: 1px solid rgba(198, 198, 198, 0.3);
+            box-shadow:
+                0 0 10px rgba(0, 0, 0, 0.236),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .side-right p {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .side-right h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3000b3;
+        }
+
+        .stats {
+            min-height: 150px;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #3000b3;
+            margin: auto 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: rgba(0, 0, 0, .7);
+        }
+
+        @media (max-width: 490px) {
+
+            .hero-layout {
+                flex-direction: column;
+                gap: 5px;
+                margin-top: 20%;
+            }
+
+            .side-card {
+                width: 350px;
+                max-width: 100%;
+                min-height: auto;
+            }
+
+            .hero {
+                width: 100%;
+            }
+
+            .side-right p {
+                font-size: 19px;
+                font-weight: bold;
+            }
+
+            .side-right h3 {
+                font-size: 21px;
+                font-weight: bold;
+                color: #3000b3;
             }
         }
     </style>
@@ -819,7 +1054,7 @@
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
                 border: 1px solid rgba(0, 0, 0, 0.06);
-                box-shadow: 0 0px 5px rgba(0, 0, 0, 0.08);
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.186);
                 min-height: 70px;
             }
 
@@ -849,17 +1084,17 @@
     <!-- offer-slider -->
     <style>
         .ps-wrap {
-            width: min(1200px, 90%);
-            max-width: 90%;
+            max-width: 99%;
             margin: 40px auto 0;
-            background: linear-gradient(135deg, #20063f00 0%, #28006e55 50%, #004cffa2 100%);
+            background: #2A7B9B;
+            background: linear-gradient(133deg, rgba(42, 123, 155, 0.26) 0%, rgba(87, 119, 199, 0) 20%, rgba(83, 116, 237, 0.29) 100%);
             border-radius: 20px;
             padding: 24px 20px;
             font-family: sans-serif;
             direction: rtl;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 5px black;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.493);
         }
 
         .ps-header {
@@ -912,14 +1147,32 @@
 
         .pc-img {
             width: 100%;
-            height: 120px;
+            height: 150px;
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.06);
+            overflow: hidden;
             display: flex;
             align-items: center;
+            overflow: visible;
             justify-content: center;
-            font-size: 42px;
-            overflow: hidden;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .pc-img img {
+            width: 180px;
+            height: 150px;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, height .35s ease, margin-top .35s ease;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .pc:hover .pc-img img {
+            height: 180px;
+            margin-top: 35px;
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            z-index: 5;
         }
 
         .pc-badge {
@@ -988,7 +1241,7 @@
 
         .ps-promo {
             flex: 0 0 160px;
-            background: linear-gradient(145deg, rgba(0, 0, 0, 0.35), rgba(167, 139, 250, 0.608));
+            background: linear-gradient(145deg, rgba(192, 210, 255, 0.212), rgba(167, 139, 250, 0.608));
             border: 0.5px solid rgba(167, 139, 250, 0.4);
             border-radius: 16px;
             padding: 20px 16px;
@@ -1022,7 +1275,7 @@
             padding: 5px 14px;
             cursor: pointer;
             background: rgba(167, 139, 250, 0.1);
-            box-shadow: 0 0 4px;
+            box-shadow: 0 0 4px rgba(6, 6, 6, 0.46);
             white-space: nowrap;
         }
 
@@ -1056,11 +1309,137 @@
             background: rgba(82, 24, 255, 0.35);
         }
 
+        .offer-layout {
+            display: flex;
+            gap: 16px;
+            width: min(1400px, 98%);
+            margin: 10px auto 0;
+            align-items: stretch;
+        }
+
+        .ps-wrap {
+            flex: 0 0 80%;
+        }
+
+        .deal-col {
+            flex: 0 0 19%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-top: 3%;
+        }
+
+        .featured-deal {
+            background: linear-gradient(160deg,
+                    rgba(255, 70, 70, 0.745),
+                    rgba(90, 40, 255, 0.717));
+
+            border-radius: 22px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            box-shadow: 0 0 5px rgb(0, 0, 0);
+
+            overflow: hidden;
+        }
+
+        .deal-badge {
+            background: linear-gradient(135deg, #ff2e2edf, #ff7818de);
+            color: white;
+            height: 70px;
+            padding: 15px 10px;
+            border-radius: 50px;
+
+            font-size: 25px;
+            font-weight: 700;
+            text-align: center;
+
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.583);
+        }
+
+        .price-box {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            justify-content: start;
+            align-items: flex-end;
+        }
+
+        .old {
+            font-size: 16px;
+            opacity: 1;
+            text-decoration: line-through;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 800;
+            color: #2f00ff;
+        }
+
+        .deal-img {
+            width: 100%;
+            height: 150px;
+            border-radius: 14px;
+            overflow: visible;
+            position: relative;
+        }
+
+        .deal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, height .35s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-deal:hover .deal-img img {
+            height: 200px;
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            z-index: 5;
+        }
+
+        .deal-content {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .deal-title {
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .deal-btn {
+            padding: 9px 10px;
+            border-radius: 10px;
+
+            border: none;
+            cursor: pointer;
+
+            background: linear-gradient(135deg, #6a11ff, #2575fc);
+            color: white;
+
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .deal-btn:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
         @media (max-width: 490px) {
 
             .ps-wrap {
                 background: rgba(161, 169, 255, 0.303);
-                box-shadow: 0 0 8px gray;
+                box-shadow: 0 0 8px rgba(128, 128, 128, 0.546);
                 width: 100%;
                 max-width: 96%;
                 margin: 25px auto 0;
@@ -1094,18 +1473,763 @@
             .ps-title {
                 padding-right: 5%;
             }
+
+            .offer-layout {
+                flex-direction: column;
+            }
+
+            .ps-wrap,
+            .featured-deal {
+                flex: 0 0 100%;
+            }
+
+            .featured-deal {
+                min-height: 160px;
+            }
         }
     </style>
+
+    <!-- category -->
+    <style>
+        .cat-wrap {
+            width: min(1400px, 96%);
+            margin: 40px auto 0;
+            padding: 20px;
+            border-radius: 20px;
+
+            background: linear-gradient(135deg,
+                    rgba(42, 123, 155, 0.18),
+                    rgba(82, 24, 255, 0.12));
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(12px);
+        }
+
+        .cat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .cat-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #000;
+        }
+
+        .cat-more {
+            font-size: 13px;
+            color: rgba(0, 0, 0, 0.6);
+            text-decoration: none;
+        }
+
+        /* GRID دسکتاپ */
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+
+        .cat-card {
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 16px;
+
+            padding: 16px 10px;
+            text-align: center;
+
+            cursor: pointer;
+            transition: 0.25s;
+            backdrop-filter: blur(10px);
+        }
+
+        .cat-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .cat-icon {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .cat-name {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #111;
+        }
+
+
+
+        /* موبایل */
+        @media (max-width: 768px) {
+            .cat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cat-card {
+                scroll-snap-align: start;
+            }
+        }
+    </style>
+
+    <!-- best-sellers -->
+    <style>
+        .bs-wrap {
+            width: min(1400px, 96%);
+            margin: 40px auto 0;
+            padding: 20px;
+            border-radius: 20px;
+
+            background: linear-gradient(135deg,
+                    rgba(42, 123, 155, 0.18),
+                    rgba(82, 24, 255, 0.12));
+
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        /* header */
+        .bs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .bs-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #000;
+        }
+
+        .bs-more {
+            font-size: 13px;
+            color: rgba(0, 0, 0, 0.6);
+            text-decoration: none;
+        }
+
+        /* grid */
+        .bs-grid {
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-rows: repeat(1, auto);
+            grid-auto-columns: 200px;
+            gap: 14px;
+            width: max-content;
+        }
+
+        /* card */
+        .bs-card {
+            flex: 0 0 180px;
+            background: rgba(98, 98, 98, 0.19);
+            border: 1px solid rgba(42, 42, 42, 0.15);
+            border-radius: 16px;
+            padding: 16px 14px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            scroll-snap-align: start;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: background 0.2s, border 0.2s;
+            position: relative;
+        }
+
+        .bs-card:hover {
+            background: rgba(255, 255, 255, 0.11);
+            border-color: rgba(167, 139, 250, 0.4);
+        }
+
+        /* image */
+        .bs-img {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            overflow: visible;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .bs-img img {
+            width: 180px;
+            height: 150px;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, height .35s ease, margin-top .35s ease;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .bs-card:hover .bs-img img {
+            height: 180px;
+            margin-top: 35px;
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            z-index: 5;
+        }
+
+        /* text */
+        .bs-name {
+            font-size: 12.5px;
+            font-weight: 500;
+            color: rgba(1, 1, 1, 0.88);
+            line-height: 1.5;
+            min-height: 36px;
+        }
+
+        /* price */
+        .bs-price-box {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .bs-old {
+            font-size: 12px;
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .bs-price {
+            font-size: 16px;
+            font-weight: 800;
+            color: #2a00ff;
+        }
+
+        /* button */
+        .bs-btn {
+            padding: 8px 10px;
+            border: none;
+            border-radius: 12px;
+
+            background: linear-gradient(135deg, #6a11ff, #2575fc);
+            color: white;
+
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .bs-scroll {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 10px;
+        }
+
+        .bs-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .bs-section {
+            position: relative;
+        }
+
+        .bs-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 44px;
+            height: 44px;
+
+            border: none;
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(10px);
+
+            background: rgba(255, 255, 255, .7);
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+
+            z-index: 10;
+        }
+
+        .bs-prev {
+            right: -22px;
+        }
+
+        .bs-next {
+            left: -22px;
+        }
+
+        .bs-arrow:hover {
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        @media (max-width:768px) {
+
+            .bs-wrap {
+                padding: 14px;
+            }
+
+            .bs-grid {
+                grid-template-rows: repeat(2, auto);
+                grid-auto-columns: 190px;
+            }
+
+            .bs-card {
+                height: auto;
+                min-height: 290px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .bs-img {
+                height: 150px;
+            }
+
+            .bs-img img {
+                width: 100%;
+                height: 150px;
+                margin-top: 0 !important;
+                transform: none !important;
+            }
+
+            .bs-name {
+                min-height: 42px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+
+                overflow: hidden;
+            }
+
+            .bs-price-box {
+                margin-top: -20px;
+            }
+
+            .bs-btn {
+                margin-top: 8px;
+            }
+
+            .bs-arrow {
+                display: none;
+            }
+        }
+    </style>
+
+    <!-- edu -->
+    <style>
+        .edu-wrap {
+            width: min(1400px, 96%);
+            margin: 40px auto;
+
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+        }
+
+        .edu-main {
+            position: relative;
+            aspect-ratio: 16/9;
+
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.478);
+        }
+
+        .edu-main img {
+            position: absolute;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .edu-overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(to top,
+                    rgba(83, 116, 237, 0.999),
+                    transparent 60%);
+
+            color: #fff;
+        }
+
+        .edu-badge {
+            width: fit-content;
+
+            padding: 6px 12px;
+
+            border-radius: 50px;
+
+            background: #6a11ff;
+
+            font-size: 12px;
+        }
+
+        .edu-overlay h2 {
+            margin: 12px 0 8px;
+        }
+
+        .edu-btn {
+            width: fit-content;
+
+            margin-top: 12px;
+
+            padding: 10px 18px;
+
+            border-radius: 12px;
+
+            background: #fff;
+
+            color: #000;
+
+            text-decoration: none;
+        }
+
+        .edu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .edu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.663);
+            background: #2A7B9B;
+            background: linear-gradient(133deg, rgba(255, 255, 255, 0) 0%, rgba(87, 119, 199, 0) 20%, rgba(83, 116, 237, 0.545) 100%);
+            text-decoration: none;
+            color: #000;
+            transition: .3s;
+        }
+
+        .edu-item:hover {
+            transform: translateX(-8px);
+        }
+
+        .edu-item img {
+            width: 90px;
+            height: 70px;
+
+            object-fit: cover;
+
+            border-radius: 12px;
+        }
+
+        @media(max-width:768px) {
+
+            .edu-wrap {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+
+    <!-- blog -->
+    <style>
+        .blog-wrap {
+            width: min(1400px, 96%);
+            margin: 60px auto 0;
+            padding: 20px;
+            border-radius: 20px;
+
+            background: linear-gradient(135deg,
+                    rgba(42, 123, 155, 0.14),
+                    rgba(82, 24, 255, 0.10));
+
+            backdrop-filter: blur(12px);
+        }
+
+        .blog-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .blog-title {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* featured */
+        .blog-featured {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            height: 320px;
+        }
+
+        .blog-featured img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .blog-featured:hover img {
+            transform: scale(1.05);
+        }
+
+        .blog-featured .overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(to top, rgba(83, 116, 237, 0.591), transparent);
+            color: white;
+        }
+
+        .blog-featured .tag {
+            background: #6a11ff;
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            width: fit-content;
+        }
+
+        .blog-featured .title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        /* list */
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .blog-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .blog-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .blog-item .t {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .blog-item .s {
+            font-size: 11px;
+            opacity: 0.6;
+        }
+
+        /* mobile */
+        @media (max-width: 768px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-featured {
+                height: 220px;
+            }
+        }
+    </style>
+
+    <!-- FAQ -->
+    <style>
+        .faq-wrap {
+            width: min(1100px, 96%);
+            margin: 60px auto 0;
+            padding: 20px;
+
+            border-radius: 20px;
+            background: linear-gradient(135deg,
+                    rgba(42, 123, 155, 0.12),
+                    rgba(82, 24, 255, 0.08));
+
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+        }
+
+        .faq-header {
+            margin-bottom: 18px;
+        }
+
+        .faq-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #000;
+        }
+
+        .faq-sub {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-top: 4px;
+        }
+
+        /* accordion */
+        .faq-item {
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .faq-q {
+            width: 100%;
+            padding: 14px;
+            background: none;
+            border: none;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.3s ease;
+            padding: 0 14px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* active state */
+        .faq-item.active .faq-a {
+            max-height: 120px;
+            padding-bottom: 12px;
+        }
+    </style>
+
+    <!-- footer -->
+    <style>
+        .site-footer {
+            margin-top: 80px;
+            background: linear-gradient(135deg,
+                    rgba(42, 123, 155, 0.18),
+                    rgba(82, 24, 255, 0.12));
+
+            backdrop-filter: blur(12px);
+            padding: 40px 20px 20px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .footer-wrap {
+            width: min(1200px, 96%);
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .f-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        .f-col a {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.7);
+            transition: 0.2s;
+        }
+
+        .f-col a:hover {
+            color: #2a00ff;
+            transform: translateX(-3px);
+        }
+
+        .f-text {
+            font-size: 13px;
+            opacity: 0.7;
+            line-height: 1.7;
+        }
+
+        .f-badges {
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .f-contact {
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .f-social {
+            display: flex;
+            gap: 10px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .f-bottom {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        /* mobile */
+        @media (max-width: 768px) {
+            .footer-wrap {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+
 </head>
 
 <body>
     <!-- navbar -->
     <nav class="nav-wrap">
-        <div class="Byisland ms-2" id="byLogo" style="--dir: 22rem">
+        <div class="Byisland ms-2 byLogo" id="byLogo" style="--dir: 22rem">
             <a href="#">
                 <div class="logo p-1">
                     <div class="logo-dot"></div>
-                    <span>RoboChip</span>
+                    <span>RoboKala</span>
                 </div>
             </a>
         </div>
@@ -1121,241 +2245,674 @@
                 <input type="text" class="search-input" id="searchInput" placeholder="جستجو...">
 
                 <button class="nav-search" id="searchBtn">
-                    <img src="img/search.png" alt="">
+                    <img src="img/search.png" alt="" loading="lazy" decoding="async">
                 </button>
             </div>
             <div class="peek-bar"></div>
         </div>
 
         <div class="Byisland account me-2" id="bybtn" style="--dir: -22rem">
-            <img class="img-account" src="img/account.png" alt="account">
+            <img class="img-account" src="img/account.png" alt="account" loading="lazy" decoding="async">
         </div>
     </nav>
 
     <!-- news/ads -->
-    <div class="hero">
-        <div class="container">
-            <div class="slide">
-                <div class="item" style="background-image: url(img/chipset-slide-2.jpeg);">
-                    <div class="content-slider">
-                        <div class="name">2 اسلاید</div>
-                        <div class="des">
-                            ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
-                        </div>
-                        <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
-                    </div>
-                </div>
+    <div class="hero-layout reveal">
+        <div class="side-card about-card" dir="ltr">
+            <div class="about side-right">
+                <h3>RoboKala</h3>
+                <p dir="rtl">
+                    مرجع فروش قطعات الکترونیک و رباتیک
+                    ضمانت کیفیت و قیمت بهترین در بازار روز دنیا
+                </p>
+                <a href="#">بیشتر بخوانید</a>
+            </div>
 
-                <div class="item" style="background-image: url(img/chipset-slide-1.jpeg);">
-                    <div class="content-slider">
-                        <div class="name">اسلاید 1</div>
-                        <div class="des">
-                            ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
-                        </div>
-                        <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
-                    </div>
+            <div class="stats side-right">
+                <div class="stat-item">
+                    <span class="stat-number">1200+</span>
+                    <span class="stat-label">محصول</span>
                 </div>
-
-                <div class="item" style="background-image: url(img/chipset-slide-4.jpeg);">
-                    <div class="content-slider">
-                        <div class="name">اسلاید 3</div>
-                        <div class="des">
-                            ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
-                        </div>
-                        <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-number">85+</span>
+                    <span class="stat-label">مقاله</span>
                 </div>
-
-                <div class="item" style="background-image: url(img/chipset-slide-3.jpeg);">
-                    <div class="content-slider">
-                        <div class="name">اسلاید 4</div>
-                        <div class="des">
-                            ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
-                        </div>
-                        <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">پشتیبانی</span>
                 </div>
             </div>
-            <div class="slider-btn">
-                <button class="prev">‹</button>
-                <button class="next">›</button>
+
+        </div>
+
+        <div class="hero">
+            <div class="container">
+                <div class="slide">
+                    <div class="item" style="background-image: url(img/chipset-slide-2.jpeg);">
+                        <div class="content-slider">
+                            <div class="name">2 اسلاید</div>
+                            <div class="des">
+                                ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
+                            </div>
+                            <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
+                        </div>
+                    </div>
+
+                    <div class="item" style="background-image: url(img/chipset-slide-1.jpeg);">
+                        <div class="content-slider">
+                            <div class="name">اسلاید 1</div>
+                            <div class="des">
+                                ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
+                            </div>
+                            <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
+                        </div>
+                    </div>
+
+                    <div class="item" style="background-image: url(img/chipset-slide-4.jpeg);">
+                        <div class="content-slider">
+                            <div class="name">اسلاید 3</div>
+                            <div class="des">
+                                ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
+                            </div>
+                            <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
+                        </div>
+                    </div>
+
+                    <div class="item" style="background-image: url(img/chipset-slide-3.jpeg);">
+                        <div class="content-slider">
+                            <div class="name">اسلاید 4</div>
+                            <div class="des">
+                                ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
+                            </div>
+                            <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-btn">
+                    <button class="next">‹</button>
+                    <button class="prev">›</button>
+                </div>
             </div>
         </div>
+
+        <!-- اینجا هرجاش کلیک شد میره تو پرسش و پاسخ -->
+        <a href="#" style="text-decoration: none; color: #000000cc;">
+            <div class="side-card con-card mb-4">
+
+                <h3>آخرین مطالب</h3>
+
+                <div class="con-item">
+                    مقالات توضیح کوتاه
+                </div>
+
+                <div class="con-item">
+                    مقالات توضیح کوتاه
+                </div>
+
+                <div class="con-item">
+                    مقالات توضیح کوتاه
+                </div>
+
+                <div class="con-item">
+                    ...........
+                </div>
+
+                <div class="more-con">
+                    کلیک کنید
+                </div>
+            </div>
+        </a>
+
     </div>
 
     <!-- track -->
-    <div class="bar-wrap">
+    <div class="bar-wrap reveal">
         <div class="fade-l"></div>
         <div class="fade-r"></div>
         <div class="bar-track" id="track"></div>
     </div>
 
     <!-- offer -->
-    <div class="ps-wrap">
-        <div class="ps-header">
-            <div class="ps-title">تخفیف های امروز !</div>
-            <!-- <a class="ps-more" href="#">مشاهده همه ›</a> -->
-            <div class="ps-nav">
-                <button class="ps-btn next-offer">‹</button>
-                <button class="ps-btn prev-offer">›</button>
+    <div class="offer-layout reveal">
+
+        <div class="deal-col">
+
+            <div class="deal-badge">
+                🔥 بیشترین تخفیف
+            </div>
+
+            <div class="featured-deal">
+
+                <div class="deal-img">
+                    <img src="img/product/prod1.jpeg" alt="" loading="lazy" decoding="async">>
+                </div>
+
+                <div class="deal-content">
+                    <div class="deal-title">پکیج ویژه رباتیک</div>
+
+                    <div class="price-box">
+                        <div class="old">5,000,000</div>
+                        <div class="price">3,200,000 تومان</div>
+                    </div>
+
+                    <button class="deal-btn">مشاهده محصول</button>
+                </div>
+
             </div>
         </div>
 
-        <div class="ps-scroll" id="psScroll">
-
-            <div class="pc">
-                <div class="pc-img">🧩</div>
-                <div class="pc-name">بسته دونه برفی ۵۰۰ عددی</div>
-                <div class="pc-footer">
-                    <div>
-                        <div class="pc-price">۶۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
-                    </div>
-                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+        <div class="ps-wrap">
+            <div class="ps-header">
+                <div class="ps-title">تخفیف های امروز !</div>
+                <!-- <a class="ps-more" href="#">مشاهده همه ›</a> -->
+                <div class="ps-nav">
+                    <button class="ps-btn next-offer">‹</button>
+                    <button class="ps-btn prev-offer">›</button>
                 </div>
             </div>
 
-            <div class="pc">
-                <div class="pc-img">🧱</div>
-                <div class="pc-name">پازل ۱۰۰۰ تکه BrainFlakes بازل سه بعدی</div>
-                <div class="pc-footer">
-                    <div>
-                        <div class="pc-price">۱,۱۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
-                    </div>
-                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
-                </div>
-            </div>
+            <div class="ps-scroll" id="psScroll">
 
-            <div class="pc">
-                <div class="pc-badge">۱۳٪</div>
-                <div class="pc-img">🤖</div>
-                <div class="pc-name">کیت آموزشی روبوباکس مدل مینی</div>
-                <div class="pc-footer">
-                    <div>
-                        <div class="pc-old">۲,۰۰۰,۰۰۰</div>
-                        <div class="pc-price">۱,۷۵۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                <div class="pc">
+                    <div class="pc-badge">13%</div>
+                    <div class="pc-img"><img src="img/product/prod2.jpeg" alt="" loading="lazy" decoding="async">></div>
+                    <div class="pc-name">بسته دونه برفی 500 عددی</div>
+                    <div class="pc-footer">
+                        <div>
+                            <div class="pc-old">800,000</div>
+                            <div class="pc-price">600,000 <span class="pc-unit">تومان</span></div>
+                        </div>
+                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
-                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                 </div>
-            </div>
 
-            <div class="pc">
-                <div class="pc-badge">۲۴٪</div>
-                <div class="pc-img">⚙️</div>
-                <div class="pc-name">کیت آموزشی روبوباکس مدل پرو</div>
-                <div class="pc-footer">
-                    <div>
-                        <div class="pc-old">۲,۵۵۰,۰۰۰</div>
-                        <div class="pc-price">۱,۹۵۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                <div class="pc">
+                    <div class="pc-badge">13%</div>
+                    <div class="pc-img"><img src="img/product/prod3.jpeg" alt="" loading="lazy" decoding="async">></div>
+                    <div class="pc-name">پازل 1000 تکه BrainFlakes بازل سه بعدی</div>
+                    <div class="pc-footer">
+                        <div>
+                            <div class="pc-old">1,900,000</div>
+                            <div class="pc-price">1,100,000 <span class="pc-unit">تومان</span></div>
+                        </div>
+                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
-                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                 </div>
-            </div>
 
-            <div class="pc">
-                <div class="pc-badge">۱۱٪</div>
-                <div class="pc-img">🔧</div>
-                <div class="pc-name">پکیج رباتیک فول سطح ۱ تا ۴ مدل حرفه‌ای</div>
-                <div class="pc-footer">
-                    <div>
-                        <div class="pc-old">۲,۸۰۰,۰۰۰</div>
-                        <div class="pc-price">۲,۵۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                <div class="pc">
+                    <div class="pc-badge">13%</div>
+                    <div class="pc-img"><img src="img/product/prod4.jpeg" alt="" loading="lazy" decoding="async">></div>
+                    <div class="pc-name">کیت آموزشی روبوباکس مدل مینی</div>
+                    <div class="pc-footer">
+                        <div>
+                            <div class="pc-old">2,000,000</div>
+                            <div class="pc-price">1,750,000 <span class="pc-unit">تومان</span></div>
+                        </div>
+                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
-                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                 </div>
-            </div>
 
-            <div class="pc">
-                <div class="pc-badge">۱۰٪</div>
-                <div class="pc-img">🏆</div>
-                <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
-                <div class="pc-footer">
-                    <div>
-                        <div class="pc-old">۵,۰۰۰,۰۰۰</div>
-                        <div class="pc-price">۴,۵۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                <div class="pc">
+                    <div class="pc-badge">24%</div>
+                    <div class="pc-img"><img src="img/product/prod5.jpeg" alt="" loading="lazy" decoding="async">></div>
+                    <div class="pc-name">کیت آموزشی روبوباکس مدل پرو</div>
+                    <div class="pc-footer">
+                        <div>
+                            <div class="pc-old">2,550,000</div>
+                            <div class="pc-price">1,950,000 <span class="pc-unit">تومان</span></div>
+                        </div>
+                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
-                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                 </div>
-            </div>
-            <div class="pc">
-                <div class="pc-badge">۱۰٪</div>
-                <div class="pc-img">🏆</div>
-                <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
-                <div class="pc-footer">
-                    <div>
-                        <div class="pc-old">۵,۰۰۰,۰۰۰</div>
-                        <div class="pc-price">۴,۵۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+
+                <div class="pc">
+                    <div class="pc-badge">11%</div>
+                    <div class="pc-img"><img src="img/product/prod2.jpeg" alt="" loading="lazy" decoding="async">></div>
+                    <div class="pc-name">پکیج رباتیک فول سطح 1 تا 4 مدل حرفه‌ای</div>
+                    <div class="pc-footer">
+                        <div>
+                            <div class="pc-old">2,800,000</div>
+                            <div class="pc-price">2,500,000 <span class="pc-unit">تومان</span></div>
+                        </div>
+                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
-                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                 </div>
-            </div>
-            <div class="pc">
-                <div class="pc-badge">۱۰٪</div>
-                <div class="pc-img">🏆</div>
-                <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
-                <div class="pc-footer">
-                    <div>
-                        <div class="pc-old">۵,۰۰۰,۰۰۰</div>
-                        <div class="pc-price">۴,۵۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+
+                <div class="pc">
+                    <div class="pc-badge">10%</div>
+                    <div class="pc-img"><img src="img/product/prod7.jpeg" alt="" loading="lazy" decoding="async">></div>
+                    <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                    <div class="pc-footer">
+                        <div>
+                            <div class="pc-old">5,000,000</div>
+                            <div class="pc-price">4,500,000 <span class="pc-unit">تومان</span></div>
+                        </div>
+                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
-                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                 </div>
-            </div>
-            <div class="pc">
-                <div class="pc-badge">۱۰٪</div>
-                <div class="pc-img">🏆</div>
-                <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
-                <div class="pc-footer">
-                    <div>
-                        <div class="pc-old">۵,۰۰۰,۰۰۰</div>
-                        <div class="pc-price">۴,۵۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                <div class="pc">
+                    <div class="pc-badge">10%</div>
+                    <div class="pc-img"><img src="img/product/prod1.jpeg" alt="" loading="lazy" decoding="async">></div>
+                    <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                    <div class="pc-footer">
+                        <div>
+                            <div class="pc-old">5,000,000</div>
+                            <div class="pc-price">4,500,000 <span class="pc-unit">تومان</span></div>
+                        </div>
+                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
-                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
                 </div>
-            </div>
-            <div class="ps-promo">
-                <div class="ps-promo-icon">🎓</div>
-                <div class="ps-promo-text">پکیج‌های آموزش رباتیک</div>
-                <div class="ps-promo-btn">مشاهده همه ›</div>
+                <div class="pc">
+                    <div class="pc-badge">10%</div>
+                    <div class="pc-img"><img src="img/product/prod2.jpeg" alt="" loading="lazy" decoding="async">></div>
+                    <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                    <div class="pc-footer">
+                        <div>
+                            <div class="pc-old">5,000,000</div>
+                            <div class="pc-price">4,500,000 <span class="pc-unit">تومان</span></div>
+                        </div>
+                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                    </div>
+                </div>
+                <div class="pc">
+                    <div class="pc-badge">10%</div>
+                    <div class="pc-img"><img src="img/product/prod3.jpeg" alt="" loading="lazy" decoding="async">></div>
+                    <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                    <div class="pc-footer">
+                        <div>
+                            <div class="pc-old">5,000,000</div>
+                            <div class="pc-price">4,500,000 <span class="pc-unit">تومان</span></div>
+                        </div>
+                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                    </div>
+                </div>
+                <div class="ps-promo">
+                    <div class="ps-promo-icon">🎓</div>
+                    <div class="ps-promo-text">پکیج‌های آموزش رباتیک</div>
+                    <div class="ps-promo-btn">مشاهده همه ›</div>
+                </div>
             </div>
         </div>
+
     </div>
 
-    <main class="content">
+    <!-- category -->
+    <section class="cat-wrap reveal>
+        <div class="cat-header">
+            <div class="cat-title">دسته‌بندی‌ها</div>
+            <!-- <a href="#" class="cat-more">مشاهده همه ›</a> -->
+        </div>
 
-        <div class="grid">
-            <div class="card">
-                <h3>باکس</h3>
-                <p>دیسکریپشن باکس</p>
+        <div class="cat-grid">
+
+            <div class="cat-card">
+                <div class="cat-icon">🤖</div>
+                <div class="cat-name">رباتیک</div>
             </div>
-            <div class="card">
-                <h3>باکس</h3>
-                <p>دیسکریپشن باکس</p>
+
+            <div class="cat-card">
+                <div class="cat-icon">⚙️</div>
+                <div class="cat-name">قطعات الکترونیک</div>
+            </div>
+
+            <div class="cat-card">
+                <div class="cat-icon">🧠</div>
+                <div class="cat-name">آموزشی</div>
+            </div>
+
+            <div class="cat-card">
+                <div class="cat-icon">🔧</div>
+                <div class="cat-name">ابزار و تجهیزات</div>
+            </div>
+
+            <div class="cat-card">
+                <div class="cat-icon">🚀</div>
+                <div class="cat-name">پروژه‌های آماده</div>
+            </div>
+
+            <div class="cat-card">
+                <div class="cat-icon">🔥</div>
+                <div class="cat-name">تخفیفات ویژه</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- best-sellers -->
+    <section class="bs-wrap reveal">
+        <div class="bs-section">
+
+            <div class="bs-header">
+                <div class="bs-title">🔥 پرفروش‌ترین محصولات</div>
+                <a href="#" class="bs-more">مشاهده همه ›</a>
+            </div>
+            <button class="bs-arrow bs-next">›</button>
+            <button class="bs-arrow bs-prev">‹</button>
+
+            <div class="bs-scroll" id="bestSellerScroll">
+                <div class="bs-grid">
+
+                    <div class="bs-card">
+                        <div class="bs-img">
+                            <div class="bs-img">
+                                <img src="img/product/prod1.jpeg" alt="" loading="lazy" decoding="async">>
+                            </div>
+                        </div>
+                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+                        <div class="bs-price-box">
+                            <div class="bs-old">2,000,000</div>
+                            <div class="bs-price">1,450,000 تومان</div>
+                        </div>
+                        <button class="bs-btn">افزودن به سبد</button>
+                    </div>
+
+                    <div class="bs-card">
+                        <div class="bs-img"><img src="img/product/prod2.jpeg" alt="" loading="lazy" decoding="async">>
+                        </div>
+                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+
+                        <div class="bs-price-box">
+                            <div class="bs-old">2,000,000</div>
+                            <div class="bs-price">1,450,000 تومان</div>
+                        </div>
+
+                        <button class="bs-btn">افزودن به سبد</button>
+                    </div>
+
+                    <div class="bs-card">
+                        <div class="bs-img"><img src="img/product/prod3.jpeg" alt="" loading="lazy" decoding="async">>
+                        </div>
+                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+
+                        <div class="bs-price-box">
+                            <div class="bs-old">2,000,000</div>
+                            <div class="bs-price">1,450,000 تومان</div>
+                        </div>
+
+                        <button class="bs-btn">افزودن به سبد</button>
+                    </div>
+
+                    <div class="bs-card">
+                        <div class="bs-img"><img src="img/product/prod4.jpeg" alt="" loading="lazy" decoding="async">>
+                        </div>
+                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+
+                        <div class="bs-price-box">
+                            <div class="bs-old">2,000,000</div>
+                            <div class="bs-price">1,450,000 تومان</div>
+                        </div>
+
+                        <button class="bs-btn">افزودن به سبد</button>
+                    </div>
+
+                    <div class="bs-card">
+                        <div class="bs-img"><img src="img/product/prod5.jpeg" alt="" loading="lazy" decoding="async">>
+                        </div>
+                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+
+                        <div class="bs-price-box">
+                            <div class="bs-old">2,000,000</div>
+                            <div class="bs-price">1,450,000 تومان</div>
+                        </div>
+
+                        <button class="bs-btn">افزودن به سبد</button>
+                    </div>
+
+                    <div class="bs-card">
+                        <div class="bs-img"><img src="img/product/prod7.jpeg" alt="" loading="lazy" decoding="async">>
+                        </div>
+                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+
+                        <div class="bs-price-box">
+                            <div class="bs-old">2,000,000</div>
+                            <div class="bs-price">1,450,000 تومان</div>
+                        </div>
+
+                        <button class="bs-btn">افزودن به سبد</button>
+                    </div>
+
+
+                    <div class="bs-card">
+                        <div class="bs-img"><img src="img/product/prod1.jpeg" alt="" loading="lazy" decoding="async">>
+                        </div>
+                        <div class="bs-name">پکیج قطعات الکترونیک کامل</div>
+
+                        <div class="bs-price-box">
+                            <div class="bs-old">۱,۸۰۰,۰۰۰</div>
+                            <div class="bs-price">۱,۲۰۰,۰۰۰ تومان</div>
+                        </div>
+
+                        <button class="bs-btn">افزودن به سبد</button>
+                    </div>
+
+                    <div class="bs-card">
+                        <div class="bs-img"><img src="img/product/prod2.jpeg" alt="" loading="lazy" decoding="async">>
+                        </div>
+                        <div class="bs-name">ست آموزشی آردوینو حرفه‌ای</div>
+
+                        <div class="bs-price-box">
+                            <div class="bs-old">۳,۰۰۰,۰۰۰</div>
+                            <div class="bs-price">۲,۲۵۰,۰۰۰ تومان</div>
+                        </div>
+
+                        <button class="bs-btn">افزودن به سبد</button>
+                    </div>
+
+                    <div class="bs-card">
+                        <div class="bs-img"><img src="img/product/prod3.jpeg" alt="" loading="lazy" decoding="async">>
+                        </div>
+                        <div class="bs-name">ابزار کامل ساخت پروژه</div>
+
+                        <div class="bs-price-box">
+                            <div class="bs-old">۲,۵۰۰,۰۰۰</div>
+                            <div class="bs-price">۱,۹۹۰,۰۰۰ تومان</div>
+                        </div>
+
+                        <button class="bs-btn">افزودن به سبد</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- edu -->
+    <section class="edu-wrap reveal">
+
+        <div class="edu-main">
+
+            <img src="img/edu/ardoino.jpeg" alt="" loading="lazy" decoding="async">>
+
+            <div class="edu-overlay">
+                <!-- میتونه بیشترین تخفیف یا بیشترین خرید یا هر چیزی باشه -->
+                <span class="edu-badge">بیشترین بازدید</span>
+
+                <h2>آموزش ساخت ربات مسیریاب با آردوینو</h2>
+
+                <p>
+                    از انتخاب قطعات تا برنامه‌نویسی و تست نهایی ربات.
+                </p>
+
+                <a href="#" class="edu-btn">
+                    مشاهده آموزش
+                </a>
+            </div>
+
+        </div>
+
+        <div class="edu-list">
+
+            <a href="#" class="edu-item">
+                <img src="img/edu/iot.jpeg" loading="lazy" decoding="async">>
+                <span>آموزش ESP32</span>
+            </a>
+
+            <a href="#" class="edu-item">
+                <img src="img/edu/micro.jpeg" loading="lazy" decoding="async">>
+                <span>آموزش AVR</span>
+            </a>
+
+            <a href="#" class="edu-item">
+                <img src="img/edu/ardoino2.jpeg" loading="lazy" decoding="async">>
+                <span>آموزش طراحی PCB</span>
+            </a>
+
+            <a href="#" class="edu-item">
+                <img src="img//edu/robatic.jpeg" loading="lazy" decoding="async">>
+                <span>آموزش سنسورها</span>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- blog -->
+    <div class="blog-wrap reveal">
+
+        <div class="blog-header">
+            <div class="blog-title">آخرین مقالات آموزشی</div>
+            <a href="#" class="blog-more">مشاهده همه ›</a>
+        </div>
+
+        <div class="blog-layout">
+
+            <!-- Side list -->
+            <div class="blog-list">
+
+                <div class="blog-item">
+                    <img src="img//edu/iot.jpeg" loading="lazy" decoding="async">>
+                    <div>
+                        <div class="t">مقدمه‌ای بر Arduino</div>
+                        <div class="s">5 دقیقه مطالعه</div>
+                    </div>
+                </div>
+
+                <div class="blog-item">
+                    <img src="img/edu/robatic.jpeg" loading="lazy" decoding="async">>
+                    <div>
+                        <div class="t">سنسورها در رباتیک</div>
+                        <div class="s">8 دقیقه مطالعه</div>
+                    </div>
+                </div>
+
+                <div class="blog-item">
+                    <img src="img/edu/micro.jpeg" loading="lazy" decoding="async">>
+                    <div>
+                        <div class="t">کنترل موتور DC</div>
+                        <div class="s">6 دقیقه مطالعه</div>
+                    </div>
+                </div>
 
             </div>
-            <div class="card">
-                <h3>باکس</h3>
-                <p>دیسکریپشن باکس</p>
 
-            </div>
-            <div class="card">
-                <h3>باکس</h3>
-                <p>دیسکریپشن باکس</p>
-
-            </div>
-            <div class="card">
-                <h3>باکس</h3>
-                <p>دیسکریپشن باکس</p>
-
-            </div>
-            <div class="card">
-                <h3>باکس</h3>
-                <p>دیسکریپشن باکس</p>
-
+            <!-- Featured -->
+            <div class="blog-featured">
+                <img src="img/edu/ardoino.jpeg" alt="" loading="lazy" decoding="async">>
+                <div class="overlay">
+                    <div class="tag">ویژه</div>
+                    <div class="title">آموزش کامل میکروکنترلر AVR از صفر</div>
+                    <div class="desc">شروع مسیر حرفه‌ای در رباتیک با این مقاله</div>
+                </div>
             </div>
         </div>
 
+    </div>
 
-    </main>
+    <!-- FAQ -->
+    <div class="faq-wrap reveal">
+
+        <div class="faq-header">
+            <div class="faq-title">سوالات متداول</div>
+            <div class="faq-sub">پاسخ سوالات پرتکرار کاربران</div>
+        </div>
+
+        <div class="faq-list">
+
+            <div class="faq-item">
+                <button class="faq-q">چطور سفارش ثبت کنم؟ <span>+</span></button>
+                <div class="faq-a">
+                    بعد از انتخاب محصول، وارد سبد خرید شده و پرداخت را انجام دهید.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-q">مدت ارسال چقدر است؟ <span>+</span></button>
+                <div class="faq-a">
+                    سفارش‌ها معمولاً بین ۲۴ تا ۴۸ ساعت ارسال می‌شوند.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-q">آیا تضمین کیفیت وجود دارد؟ <span>+</span></button>
+                <div class="faq-a">
+                    بله. ما ارائه دهنده بهترین کیفیت در بازار هستیم
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- footer -->
+    <footer class="site-footer reveal">
+
+        <div class="footer-wrap">
+
+            <!-- about -->
+            <div class="f-col">
+                <div class="f-title">RoboKala</div>
+                <p class="f-text">
+                    مرجع فروش قطعات رباتیک و آموزش‌های تخصصی میکروکنترلر و الکترونیک
+                </p>
+
+                <div class="f-badges">
+                    <div>✔ ضمانت کیفیت</div>
+                    <div>✔ ارسال سریع</div>
+                    <div>✔ پشتیبانی ۲۴/۷</div>
+                </div>
+            </div>
+
+            <!-- links -->
+            <div class="f-col">
+                <div class="f-title">لینک‌های سریع</div>
+                <a href="#">خانه</a>
+                <a href="#">محصولات</a>
+                <a href="#">تخفیف‌ها</a>
+                <a href="#">مقالات</a>
+            </div>
+
+            <!-- learning -->
+            <div class="f-col">
+                <div class="f-title">آموزش‌ها</div>
+                <a href="#">Arduino</a>
+                <a href="#">AVR</a>
+                <a href="#">رباتیک</a>
+                <a href="#">پروژه‌ها</a>
+            </div>
+
+            <!-- contact -->
+            <div class="f-col">
+                <div class="f-title">ارتباط با ما</div>
+                <div class="f-contact">
+                    <div>📞 0912xxxxxxx</div>
+                    <div>✉ info@robokala.ir</div>
+                </div>
+
+                <div class="f-social">
+                    <span>Social-1</span>
+                    <span>Social-2</span>
+                    <span>Social-3</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="f-bottom">
+            © 2026 RoboKala - All rights reserved
+        </div>
+
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
@@ -1418,12 +2975,12 @@
         let next = document.querySelector(".next");
         let prev = document.querySelector(".prev");
 
-        next.addEventListener("click", function () {
+        prev.addEventListener("click", function () {
             let items = document.querySelectorAll(".item");
             document.querySelector(".slide").appendChild(items[0]);
         });
 
-        prev.addEventListener("click", function () {
+        next.addEventListener("click", function () {
             let items = document.querySelectorAll(".item");
             document.querySelector(".slide").prepend(items[items.length - 1]);
         });
@@ -1432,12 +2989,12 @@
     <!-- mid-trucked -->
     <script>
         const items = [
-            { icon: "ti-truck-delivery", title: "ارسال رایگان", sub: "برای سفارش‌های بالای ۵۰۰ هزار تومان" },
-            { icon: "ti-shield-check", title: "ضمانت کیفیت", sub: "۳۰ روز گارانتی بازگشت وجه" },
+            { icon: "ti-truck-delivery", title: "ارسال رایگان", sub: "برای سفارش‌های بالای 1 میلیون تومان" },
+            { icon: "ti-shield-check", title: "ضمانت کیفیت", sub: "گارانتی بهترین کیفیت بازار" },
             { icon: "ti-headset", title: "پشتیبانی ۲۴/۷", sub: "همیشه در کنار شما هستیم" },
-            { icon: "ti-clock", title: "تحویل سریع", sub: "ارسال در کمتر از ۴۸ ساعت" },
+            // { icon: "ti-clock", title: "تحویل سریع", sub: "ارسال در کمتر از ۴۸ ساعت" },
             { icon: "ti-lock", title: "پرداخت امن", sub: "درگاه معتبر و رمزنگاری‌شده" },
-            { icon: "ti-refresh", title: "مرجوعی آسان", sub: "بدون سوال، تا 7 روز بعد از خرید" },
+            // { icon: "ti-refresh", title: "مرجوعی آسان", sub: "بدون سوال، تا 7 روز بعد از خرید" },
         ];
 
         const html = items.map(d => `
@@ -1452,6 +3009,7 @@
 
         document.getElementById('track').innerHTML = html;
     </script>
+
     <!-- offer-scroler -->
     <script>
         const scroll = document.getElementById("psScroll");
@@ -1463,6 +3021,34 @@
         document.querySelector(".prev-offer").onclick = () => {
             scroll.scrollBy({ left: -220, behavior: "smooth" });
         };
+    </script>
+
+    <!-- best-seller -->
+    <script>
+        const bsScroll = document.getElementById('bestSellerScroll');
+
+        document.querySelector('.bs-next').onclick = () => {
+            bsScroll.scrollBy({
+                left: -500,
+                behavior: 'smooth'
+            });
+        };
+
+        document.querySelector('.bs-prev').onclick = () => {
+            bsScroll.scrollBy({
+                left: 500,
+                behavior: 'smooth'
+            });
+        };
+    </script>
+
+    <!-- FAQ -->
+    <script>
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-q').addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
     </script>
 </body>
 

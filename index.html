@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+    <title>نووا</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            font-family: sans-serif;
+        }
+
+        body {
+            /* background: linear-gradient(160deg, #32c1b0, #858a9d, #f2faff95); */
+            background-color: #0b1020ea;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ───── ناوبار ───── */
+        .nav-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            padding-top: 16px;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .img-account {
+            width: 42px;
+        }
+
+        .Byisland {
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 10px;
+            background: rgba(255, 255, 255, 0.195);
+            border: 0.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 100px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: calc(100vw - 32px);
+            cursor: pointer;
+        }
+
+        .Byisland a {
+            text-decoration: none;
+        }
+
+        .Byisland.Bypeeked {
+            transform: translateX(var(--dir, 0));
+        }
+
+        .island {
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.195);
+            border: 0.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 100px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: calc(100vw - 32px);
+        }
+
+        .island.peeked {
+            transform: translateY(-98%);
+        }
+
+        .island.peeked:hover {
+            transform: translateY(0);
+        }
+
+        /* لوگو */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ffe600;
+            box-shadow: 0 0 8px #a78bfa;
+            flex-shrink: 0;
+        }
+
+        /* لینک‌ها */
+        .links {
+            display: flex;
+            gap: 2px;
+        }
+
+        .lnk {
+            padding: 6px 13px;
+            border-radius: 100px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .lnk:hover,
+        .lnk.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 42px;
+            height: 42px;
+            z-index: 1000;
+            /* position: absolute; */
+            /* left: 10px; */
+        }
+
+        .nav-search {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 42px;
+            height: 42px;
+            border: none;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .search-input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 42px;
+            height: 42px;
+            border: none;
+            outline: none;
+            border-radius: 100px;
+            padding-right: 50px;
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+        }
+
+        /* حالت باز */
+        .search-wrapper.active .search-input {
+            width: 330px;
+            opacity: 1;
+            pointer-events: auto;
+            background: white;
+            transform: translateX(85%);
+        }
+
+        .nav-search {
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.91);
+            color: #1a1a2e;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            white-space: nowrap;
+            transition: opacity 0.2s;
+            flex-shrink: 0;
+        }
+
+        .nav-search img {
+            padding: 0;
+            width: 32px;
+        }
+
+        .nav-search:hover {
+            opacity: 0.85;
+        }
+
+
+        /* نوار پایین وقتی جمع شده */
+        .peek-bar {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .island.peeked .peek-bar {
+            opacity: 1;
+        }
+
+        /* ───── محتوا ───── */
+        .content {
+            padding: 100px 40px 80px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            position: relative;
+            padding: 60px 0 48px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            height: 450px;
+        }
+
+        @keyframes bob {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-5px)
+            }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.5;
+        }
+
+        /* ───── رسپانسیو ───── */
+        @media (max-width: 600px) {
+
+            /* .links { display:none; } */
+            .island {
+                gap: 14px;
+            }
+
+            .content {
+                padding: 90px 20px 60px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .nav-search {
+                display: none;
+            }
+        }
+    </style>
+
+    <style>
+        .container {
+            position: absolute;
+            transform: translate(0%, 15%);
+            width: 900px;
+            height: 400px;
+            background: #f6e7ff;
+            border-radius: 20px;
+        }
+
+        .container .slide {
+            border-radius: 20px;
+        }
+
+        .container .slide .item {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 50%;
+            transform: translate(0%, 20%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #000000;
+            background-position: 50% 50%;
+            background-size: cover;
+            display: inline-block;
+            transition: all 0.5s;
+        }
+
+        .slide .item:nth-child(1) {
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            transition: all .5s;
+        }
+
+        .slide .item:nth-child(2) {
+            left: 62%;
+        }
+
+        .slide .item:nth-child(3) {
+            left: calc(62% + 120px);
+        }
+
+        .slide .item:nth-child(4) {
+            left: calc(62% + 240px);
+        }
+
+        .slide .item:nth-child(n + 5) {
+            left: calc(62% + 360px);
+            opacity: 0;
+        }
+
+        .slide .item:nth-child(1) .content-slider {
+            display: block;
+        }
+
+        .slide .item:nth-child(2) .content-slider {
+            display: none;
+        }
+
+        .item .content-slider {
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            width: 300px;
+            padding: 2%;
+            border-radius: 20px;
+            text-align: left;
+            color: #000000;
+            background-color: rgba(255, 255, 255, 0.424);
+            transform: translate(0, -50%);
+            font-family: system-ui;
+            display: none;
+        }
+
+        .content-slider .name {
+            font-size: 40px;
+            text-transform: uppercase;
+            font-weight: bold;
+            opacity: 0;
+            animation: animate 1s ease-in-out 1 forwards;
+        }
+
+        .content-slider .des {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            opacity: 0;
+            animation: animate 1s ease-in-out 0.3s 1 forwards;
+        }
+
+        .content-slider button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.673);
+            transition: all 0.5s;
+            animation: animate 1s ease-in-out 0.6s 1 forwards;
+        }
+
+        .content-slider button:hover {
+            background-color: rgb(255, 255, 255);
+        }
+
+        @keyframes animate {
+            from {
+                opacity: 0;
+                transform: translate(0, 100px);
+                filter: blur(33px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0);
+                filter: blur(0);
+            }
+        }
+
+        .slider-btn {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            /* left: 45%; */
+            right: 30%;
+            width: 100%;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            bottom: 70px;
+        }
+
+        .slider-btn button {
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            margin: 0 5px;
+            border: 0;
+            box-shadow: 0 0 5px rgb(0, 0, 0);
+            transition: 0.3s;
+            background: rgb(255, 255, 255);
+        }
+
+        .slider-btn button:hover {
+            color: #000000;
+            transform: scale(1.1);
+        }
+
+        .next {
+            padding: 0 0 0 3px;
+            width: 40px;
+            height: 40px;
+            padding-left: 3%;
+        }
+
+        .next img {
+            width: 30px;
+        }
+
+        .prev {
+            width: 35px;
+            height: 35px;
+            padding: 0 3px 0 0;
+        }
+
+        .prev img {
+            width: 35px;
+        }
+    </style>
+
+    <style>
+        .bar-wrap {
+            margin: 100px auto 0;
+            margin-top: 100px;
+            max-width: 90%;
+            overflow: hidden;
+            padding: 12px 0;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 0.5px solid rgba(255, 255, 255, 0.12);
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50px;
+            position: relative;
+        }
+
+        .bar-track {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            width: 100%;
+        }
+
+        .feat {
+            display: flex;
+            align-items: center;
+            gap: 1px;
+            padding: 8px 28px;
+            border-right: 0.5px solid rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+            cursor: default;
+            font-family: sans-serif;
+        }
+
+        .feat i {
+            font-size: 18px;
+            color: #a78bfa;
+        }
+
+        .feat-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .feat-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .fade-l,
+        .fade-r {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .fade-l {
+            left: 0;
+            /* background: linear-gradient(to right, red, transparent); */
+        }
+
+        .fade-r {
+            right: 0;
+            /* background: linear-gradient(to left, red, transparent); */
+        }
+    </style>
+
+    <style>
+        .ps-wrap {
+            width: min(1200px, 90%);
+            max-width: 90%;
+            margin: 50px auto 0;
+            background: linear-gradient(135deg, #20063f00 0%, #2d1060a1 50%, #2e006f 100%);
+            border-radius: 20px;
+            padding: 24px 20px;
+            font-family: sans-serif;
+            direction: rtl;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 5px black;
+        }
+
+        .ps-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .ps-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .ps-more {
+            font-size: 12px;
+            color: #c4b5fd;
+            background: rgba(167, 139, 250, 0.15);
+            border: 0.5px solid rgba(167, 139, 250, 0.3);
+            border-radius: 100px;
+            padding: 5px 14px;
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .ps-scroll {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .ps-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pc {
+            flex: 0 0 180px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 0.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 16px 14px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            scroll-snap-align: start;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: background 0.2s, border 0.2s;
+            position: relative;
+        }
+
+        .pc:hover {
+            background: rgba(255, 255, 255, 0.11);
+            border-color: rgba(167, 139, 250, 0.4);
+        }
+
+        .pc-img {
+            width: 100%;
+            height: 120px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            overflow: hidden;
+        }
+
+        .pc-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #7c3aed;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 100px;
+        }
+
+        .pc-name {
+            font-size: 12.5px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.88);
+            line-height: 1.5;
+            min-height: 36px;
+        }
+
+        .pc-old {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            text-decoration: line-through;
+        }
+
+        .pc-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: #a78bfa;
+        }
+
+        .pc-unit {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-right: 2px;
+        }
+
+        .pc-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .pc-cart {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: rgba(167, 139, 250, 0.2);
+            border: 0.5px solid rgba(167, 139, 250, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: #c4b5fd;
+            font-size: 16px;
+        }
+
+        .pc-cart:hover {
+            background: rgba(167, 139, 250, 0.4);
+        }
+
+        .ps-promo {
+            flex: 0 0 160px;
+            background: linear-gradient(145deg, rgba(124, 58, 237, 0.35), rgba(167, 139, 250, 0.15));
+            border: 0.5px solid rgba(167, 139, 250, 0.4);
+            border-radius: 16px;
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            scroll-snap-align: start;
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        .ps-promo-icon {
+            font-size: 40px;
+        }
+
+        .ps-promo-text {
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .ps-promo-btn {
+            font-size: 12px;
+            color: #c4b5fd;
+            border: 0.5px solid rgba(167, 139, 250, 0.5);
+            border-radius: 100px;
+            padding: 5px 14px;
+            cursor: pointer;
+            background: rgba(167, 139, 250, 0.1);
+            white-space: nowrap;
+        }
+
+        .bd1 {
+            width: 200px;
+            height: 200px;
+            background: #7c3aed;
+            opacity: .12;
+            filter: blur(50px);
+            top: -40px;
+            right: -40px;
+        }
+
+        .bd2 {
+            width: 150px;
+            height: 150px;
+            background: #0ea5e9;
+            opacity: .1;
+            filter: blur(40px);
+            bottom: 0;
+            left: 20px;
+        }
+
+        .ps-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ps-nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .ps-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 0.5px solid rgba(167, 139, 250, 0.4);
+            background: rgba(167, 139, 250, 0.15);
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .ps-btn:hover {
+            background: rgba(167, 139, 250, 0.35);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav-wrap">
+        <div class="Byisland ms-2" id="byLogo" style="--dir: 22rem">
+            <a href="#">
+                <div class="logo p-1">
+                    <div class="logo-dot"></div>
+                    <span>RoboChip</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="island" id="island">
+            <div class="links">
+                <button class="lnk active">خانه</button>
+                <button class="lnk">محصولات</button>
+                <button class="lnk">پکیج ها</button>
+                <button class="lnk">تماس</button>
+            </div>
+            <div class="search-wrapper" id="searchWrapper">
+                <input type="text" class="search-input" id="searchInput" placeholder="جستجو...">
+
+                <button class="nav-search" id="searchBtn">
+                    <img src="img/search.png" alt="">
+                </button>
+            </div>
+            <div class="peek-bar"></div>
+        </div>
+        <div class="Byisland me-2" id="bybtn" style="--dir: -22rem">
+            <img class="img-account" src="img/account.png" alt="account">
+        </div>
+    </nav>
+
+
+    <div class="hero">
+        <div class="container">
+            <div class="slide">
+                <div class="item" style="background-image: url(img/chipset-slide-2.jpeg);">
+                    <div class="content-slider">
+                        <div class="name">2 اسلاید</div>
+                        <div class="des">
+                            ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
+                        </div>
+                        <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
+                    </div>
+                </div>
+
+                <div class="item" style="background-image: url(img/chipset-slide-1.jpeg);">
+                    <div class="content-slider">
+                        <div class="name">اسلاید 1</div>
+                        <div class="des">
+                            ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
+                        </div>
+                        <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
+                    </div>
+                </div>
+
+                <div class="item" style="background-image: url(img/chipset-slide-4.jpeg);">
+                    <div class="content-slider">
+                        <div class="name">اسلاید 3</div>
+                        <div class="des">
+                            ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
+                        </div>
+                        <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
+                    </div>
+                </div>
+
+                <div class="item" style="background-image: url(img/chipset-slide-3.jpeg);">
+                    <div class="content-slider">
+                        <div class="name">اسلاید 4</div>
+                        <div class="des">
+                            ارتفاعات عرفانی را زیر آسمان گرگ و میش و دریاچه‌های مه‌آلود تجربه کنید.
+                        </div>
+                        <a class="seeMore" target="_blank" href=""><button>بیشتر..</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-btn">
+                <button class="prev"><img src="img/arrow.png" alt="prev"></button>
+                <button class="next"><img src="img/arrow.png" alt="prev" style="rotate: 180deg;"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bar-wrap">
+        <div class="fade-l"></div>
+        <div class="fade-r"></div>
+        <div class="bar-track" id="track"></div>
+    </div>
+
+    <div class="ps-wrap">
+
+
+        <div class="ps-header">
+            <div class="ps-title">🎮 پکیج‌های آموزش رباتیک</div>
+            <!-- <a class="ps-more" href="#">مشاهده همه ›</a> -->
+            <div class="ps-nav">
+                <button class="ps-btn next-offer">‹</button>
+                <button class="ps-btn prev-offer">›</button>
+            </div>
+        </div>
+
+        <div class="ps-scroll" id="psScroll">
+
+            <div class="pc">
+                <div class="pc-img">🧩</div>
+                <div class="pc-name">بسته دونه برفی ۵۰۰ عددی</div>
+                <div class="pc-footer">
+                    <div>
+                        <div class="pc-price">۶۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                    </div>
+                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                </div>
+            </div>
+
+            <div class="pc">
+                <div class="pc-img">🧱</div>
+                <div class="pc-name">پازل ۱۰۰۰ تکه BrainFlakes بازل سه بعدی</div>
+                <div class="pc-footer">
+                    <div>
+                        <div class="pc-price">۱,۱۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                    </div>
+                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                </div>
+            </div>
+
+            <div class="pc">
+                <div class="pc-badge">۱۳٪</div>
+                <div class="pc-img">🤖</div>
+                <div class="pc-name">کیت آموزشی روبوباکس مدل مینی</div>
+                <div class="pc-footer">
+                    <div>
+                        <div class="pc-old">۲,۰۰۰,۰۰۰</div>
+                        <div class="pc-price">۱,۷۵۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                    </div>
+                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                </div>
+            </div>
+
+            <div class="pc">
+                <div class="pc-badge">۲۴٪</div>
+                <div class="pc-img">⚙️</div>
+                <div class="pc-name">کیت آموزشی روبوباکس مدل پرو</div>
+                <div class="pc-footer">
+                    <div>
+                        <div class="pc-old">۲,۵۵۰,۰۰۰</div>
+                        <div class="pc-price">۱,۹۵۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                    </div>
+                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                </div>
+            </div>
+
+            <div class="pc">
+                <div class="pc-badge">۱۱٪</div>
+                <div class="pc-img">🔧</div>
+                <div class="pc-name">پکیج رباتیک فول سطح ۱ تا ۴ مدل حرفه‌ای</div>
+                <div class="pc-footer">
+                    <div>
+                        <div class="pc-old">۲,۸۰۰,۰۰۰</div>
+                        <div class="pc-price">۲,۵۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                    </div>
+                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                </div>
+            </div>
+
+            <div class="pc">
+                <div class="pc-badge">۱۰٪</div>
+                <div class="pc-img">🏆</div>
+                <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                <div class="pc-footer">
+                    <div>
+                        <div class="pc-old">۵,۰۰۰,۰۰۰</div>
+                        <div class="pc-price">۴,۵۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                    </div>
+                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                </div>
+            </div>
+            <div class="pc">
+                <div class="pc-badge">۱۰٪</div>
+                <div class="pc-img">🏆</div>
+                <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                <div class="pc-footer">
+                    <div>
+                        <div class="pc-old">۵,۰۰۰,۰۰۰</div>
+                        <div class="pc-price">۴,۵۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                    </div>
+                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                </div>
+            </div>
+            <div class="pc">
+                <div class="pc-badge">۱۰٪</div>
+                <div class="pc-img">🏆</div>
+                <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                <div class="pc-footer">
+                    <div>
+                        <div class="pc-old">۵,۰۰۰,۰۰۰</div>
+                        <div class="pc-price">۴,۵۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                    </div>
+                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                </div>
+            </div>
+            <div class="pc">
+                <div class="pc-badge">۱۰٪</div>
+                <div class="pc-img">🏆</div>
+                <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                <div class="pc-footer">
+                    <div>
+                        <div class="pc-old">۵,۰۰۰,۰۰۰</div>
+                        <div class="pc-price">۴,۵۰۰,۰۰۰ <span class="pc-unit">تومان</span></div>
+                    </div>
+                    <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                </div>
+            </div>
+            <div class="ps-promo">
+                <div class="ps-promo-icon">🎓</div>
+                <div class="ps-promo-text">پکیج‌های آموزش رباتیک</div>
+                <div class="ps-promo-btn">مشاهده همه ›</div>
+            </div>
+        </div>
+    </div>
+
+    <main class="content">
+
+        <div class="grid">
+            <div class="card">
+                <h3>باکس</h3>
+                <p>دیسکریپشن باکس</p>
+            </div>
+            <div class="card">
+                <h3>باکس</h3>
+                <p>دیسکریپشن باکس</p>
+
+            </div>
+            <div class="card">
+                <h3>باکس</h3>
+                <p>دیسکریپشن باکس</p>
+
+            </div>
+            <div class="card">
+                <h3>باکس</h3>
+                <p>دیسکریپشن باکس</p>
+
+            </div>
+            <div class="card">
+                <h3>باکس</h3>
+                <p>دیسکریپشن باکس</p>
+
+            </div>
+            <div class="card">
+                <h3>باکس</h3>
+                <p>دیسکریپشن باکس</p>
+
+            </div>
+        </div>
+
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- nav -->
+    <script>
+        const island = document.getElementById('island');
+        const Byisland = document.getElementById('Byisland');
+        let peeked = false;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80 && !peeked) {
+                peeked = true;
+                island.classList.add('peeked');
+                byLogo.classList.add('Bypeeked');
+                bybtn.classList.add('Bypeeked');
+            } else if (window.scrollY <= 80 && peeked) {
+                peeked = false;
+                island.classList.remove('peeked');
+                byLogo.classList.remove('Bypeeked');
+                bybtn.classList.remove('Bypeeked');
+            }
+        }, { passive: true });
+    </script>
+
+    <!-- searchBar -->
+    <script>
+        const searchBtn = document.getElementById("searchBtn");
+        const searchWrapper = document.getElementById("searchWrapper");
+        const searchInput = document.getElementById("searchInput");
+
+        searchBtn.addEventListener("click", () => {
+
+            // اگر باز نیست، بازش کن
+            if (!searchWrapper.classList.contains("active")) {
+                searchWrapper.classList.add("active");
+
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 300);
+
+                return;
+            }
+
+            // اگر بازه، عملیات سرچ انجام بده
+            console.log(searchInput.value);
+        });
+        document.addEventListener("click", (e) => {
+            if (!searchWrapper.contains(e.target)) {
+                searchWrapper.classList.remove("active");
+            }
+        });
+    </script>
+
+    <!-- slider-top -->
+    <script>
+        "use strict";
+
+        let next = document.querySelector(".next");
+        let prev = document.querySelector(".prev");
+
+        next.addEventListener("click", function () {
+            let items = document.querySelectorAll(".item");
+            document.querySelector(".slide").appendChild(items[0]);
+        });
+
+        prev.addEventListener("click", function () {
+            let items = document.querySelectorAll(".item");
+            document.querySelector(".slide").prepend(items[items.length - 1]);
+        });
+    </script>
+
+    <!-- mid-trucked -->
+    <script>
+        const items = [
+            { icon: "ti-truck-delivery", title: "ارسال رایگان", sub: "برای سفارش‌های بالای ۵۰۰ هزار تومان" },
+            { icon: "ti-shield-check", title: "ضمانت کیفیت", sub: "۳۰ روز گارانتی بازگشت وجه" },
+            { icon: "ti-headset", title: "پشتیبانی ۲۴/۷", sub: "همیشه در کنار شما هستیم" },
+            { icon: "ti-clock", title: "تحویل سریع", sub: "ارسال در کمتر از ۴۸ ساعت" },
+            { icon: "ti-lock", title: "پرداخت امن", sub: "درگاه معتبر و رمزنگاری‌شده" },
+            { icon: "ti-refresh", title: "مرجوعی آسان", sub: "بدون سوال، تا 7 روز بعد از خرید" },
+        ];
+
+        const html = items.map(d => `
+      <div class="feat">
+        <i class="ti ${d.icon}"></i>
+        <div class="feat-inner">
+          <div class="feat-title">${d.title}</div>
+          <div class="feat-sub">${d.sub}</div>
+        </div>
+      </div>
+    `).join('');
+
+        document.getElementById('track').innerHTML = html;
+    </script>
+    <!-- offer-scroler -->
+    <script>
+        const scroll = document.getElementById("psScroll");
+
+        document.querySelector(".next-offer").onclick = () => {
+            scroll.scrollBy({ left: 220, behavior: "smooth" });
+        };
+
+        document.querySelector(".prev-offer").onclick = () => {
+            scroll.scrollBy({ left: -220, behavior: "smooth" });
+        };
+    </script>
+</body>
+
+</html>

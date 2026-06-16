@@ -3,7 +3,6 @@
   width: min(1400px, 96%);
   margin: 40px auto 0; padding: 20px; border-radius: 20px;
   background: var(--clr-grad-section);
-  backdrop-filter: blur(0px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 .bs-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }

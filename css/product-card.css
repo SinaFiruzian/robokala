@@ -1,6 +1,7 @@
 /* ===================== GLOBAL PRODUCT CARD ===================== */
 .product-card {
-  flex: 0 0 180px;height: fit-content;
+  flex: 0 0 180px;
+  height: fit-content;
   background: var(--clr-surface-card);
   border: 1px solid var(--clr-border-dark);
   border-radius: 16px;
@@ -15,7 +16,7 @@
   -webkit-backdrop-filter: blur(2px);
   transition: background 0.2s, border 0.2s;
   position: relative;
-  height: 330px;
+  height: 300px;
 }
 
 .product-card:hover {
@@ -151,7 +152,7 @@
 /* موبایل */
 @media (max-width: 768px) {
   .product-card {
-    min-height: 340px;
+    min-height: 300px;
   }
 
   .product-card__img {

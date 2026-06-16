@@ -7,2217 +7,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="css/nav-and-body.css">
+    <link rel="stylesheet" href="css/news-slider.css">
+    <link rel="stylesheet" href="css/product-card.css">
+    <link rel="stylesheet" href="css/offer-slider.css">
+    <link rel="stylesheet" href="css/tracker.css">
+    <link rel="stylesheet" href="css//best-seller.css">
+    <link rel="stylesheet" href="css/category.css">
+    <link rel="stylesheet" href="css/edu.css">
+    <link rel="stylesheet" href="css/root.css">
+    <link rel="stylesheet" href="css/faq.css">
+    <link rel="stylesheet" href="css/footer.css">
+
 
     <title>روبوکالا</title>
-    <!-- nav & body -->
-    <style>
-        html,
-        body {
-            font-family: sans-serif;
-            background: #2A7B9B;
-            background: linear-gradient(133deg, rgba(42, 123, 155, 0) 0%, rgba(87, 119, 199, 0) 26%, rgba(83, 116, 237, 0.4) 100%);
 
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            background-color: #E5E5F7;
-            background-image: radial-gradient(circle, #444CF7 0.8px, transparent 0.8px);
-            background-size: 25px 10px;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        body {
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        body {
-            --sb-track-color: #ffffff;
-            --sb-thumb-color: #5863fdbe;
-            --sb-size: 8px;
-        }
-
-        body::-webkit-scrollbar {
-            width: var(--sb-size)
-        }
-
-        body::-webkit-scrollbar-track {
-            background: var(--sb-track-color);
-            border-radius: 4px;
-        }
-
-        body::-webkit-scrollbar-thumb {
-            background: var(--sb-thumb-color);
-            border-radius: 4px;
-
-        }
-
-        @supports not selector(::-webkit-scrollbar) {
-            body {
-                scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-            }
-        }
-
-        .nav-wrap {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            padding-top: 16px;
-            z-index: 100;
-            pointer-events: none;
-        }
-
-        .img-account {
-            width: 42px;
-        }
-
-        .Byisland {
-            pointer-events: all;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 10px 10px;
-            background: rgba(255, 255, 255, 0.195);
-            color: black;
-            border: 0.5px solid rgba(255, 255, 255, 0.12);
-            border-radius: 100px;
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            white-space: nowrap;
-            max-width: calc(100vw - 32px);
-            cursor: pointer;
-        }
-
-        .Byisland a {
-            text-decoration: none;
-        }
-
-        .Byisland.Bypeeked {
-            transform: translateX(var(--dir, 0));
-        }
-
-        .island {
-            pointer-events: all;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.195);
-            background: rgba(255, 255, 255, 0.25);
-            color: black;
-            border: 0.5px solid rgba(255, 255, 255, 0.12);
-            border-radius: 100px;
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            white-space: nowrap;
-            max-width: calc(100vw - 32px);
-        }
-
-        .island.peeked {
-            transform: translateY(-98%);
-        }
-
-        .island.peeked:hover {
-            transform: translateY(0);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            color: rgb(0, 0, 0);
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .logo-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #ffe600;
-            box-shadow: 0 0 8px #a78bfa;
-            flex-shrink: 0;
-        }
-
-        .links {
-            display: flex;
-            gap: 2px;
-        }
-
-        .lnk {
-            padding: 6px 13px;
-            border-radius: 100px;
-            font-size: 13px;
-            color: rgba(0, 0, 0, 0.6);
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .lnk:hover,
-        .lnk.active {
-            color: rgb(0, 0, 0);
-            background: rgba(0, 0, 0, 0.12);
-        }
-
-        .search-wrapper {
-            position: relative;
-            width: 35px;
-            height: 42px;
-            z-index: 1000;
-        }
-
-        .search-input {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 42px;
-            height: 42px;
-            border: none;
-            outline: none;
-            border-radius: 100px;
-            padding-right: 50px;
-            opacity: 0;
-            pointer-events: none;
-            transition: .3s;
-        }
-
-        .search-wrapper.active .search-input {
-            width: 320px;
-            opacity: 1;
-            pointer-events: auto;
-            background: rgb(214, 214, 214);
-            transform: translateX(88%);
-        }
-
-        .nav-search {
-            padding: 5px;
-            background: rgba(202, 202, 202, 0.91);
-            color: #000000;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            white-space: nowrap;
-            transition: opacity 0.2s;
-            flex-shrink: 0;
-            z-index: 2;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 42px;
-            height: 42px;
-        }
-
-        .nav-search img {
-            padding: 0;
-            width: 32px;
-        }
-
-        .nav-search:hover {
-            opacity: 0.85;
-        }
-
-
-        .peek-bar {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.35);
-            border-radius: 100px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .island.peeked .peek-bar {
-            opacity: 1;
-        }
-
-        .content {
-            padding: 100px 40px 80px;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .hero {
-            position: relative;
-            padding: 25px 0 48px;
-            color: white;
-            display: flex;
-            justify-content: center;
-            height: 450px;
-        }
-
-        @keyframes bob {
-
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(-5px)
-            }
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-
-        .card {
-            background: rgb(255, 255, 255);
-            border: 1px solid rgba(0, 0, 0, 0.147);
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 0 5px rgb(0, 0, 0);
-        }
-
-        .card h3 {
-            font-size: 14px;
-            font-weight: 600;
-            color: rgb(0, 0, 0);
-            margin-bottom: 6px;
-        }
-
-        .card p {
-            font-size: 13px;
-            color: rgba(0, 0, 0, 0.558);
-            line-height: 1.5;
-        }
-
-        @media (max-width: 600px) {
-
-            .island {
-                gap: 14px;
-            }
-
-            .content {
-                padding: 90px 20px 60px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .nav-search {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-
-            .Byisland,
-            .island {
-                gap: 10px;
-                padding: 8px 12px;
-                max-width: calc(100vw - 16px);
-            }
-
-            .logo {
-                font-size: 13px;
-            }
-
-            .lnk {
-                font-size: 12px;
-                padding: 5px 10px;
-            }
-
-            .links {
-                gap: 0;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .search-wrapper.active .search-input {
-                width: 240px;
-                transform: translateX(70%);
-            }
-
-            .nav-search {
-                width: 38px;
-                height: 38px;
-            }
-
-            .nav-search img {
-                width: 24px;
-            }
-        }
-
-        @media (max-width: 490px) {
-
-            .island,
-            .Byisland {
-                background: transparent !important;
-                border: 0px solid gray !important;
-                /* box-shadow: none !important; */
-                padding: 8px 1px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 1px;
-                overflow: visible;
-                transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            .Byisland.peeked,
-            .island.peeked {
-                transform: translateY(0%) translateX(-120%);
-            }
-
-            .Byisland.peeked:hover,
-            .island.peeked:hover {
-                transform: translateY(0) translateX(0);
-            }
-
-            .nav-wrap:hover .Byisland {
-                transform: translateY(0) translateX(0);
-                opacity: 1;
-            }
-
-            .Byisland.Bypeeked {
-                transform: translateX(-150%);
-            }
-
-            #byLogo {
-                display: none;
-            }
-
-
-            .links {
-                display: flex;
-                flex-wrap: nowrap;
-                gap: 5px;
-                overflow-x: auto;
-                overflow-y: hidden;
-                padding: 6px 4px;
-                margin: 0;
-                scroll-padding: 10px;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .links>* {
-                flex: 0 0 auto;
-            }
-
-            .peek-bar {
-                position: absolute;
-                bottom: 0;
-                right: -8%;
-                /* transform: translatey(-17%); */
-                width: 10px;
-                height: 50px;
-                background: rgba(255, 255, 255, 0.909);
-                border-radius: 100px;
-                opacity: 0;
-                transition: opacity 0.3s;
-            }
-
-            .lnk {
-                padding: 10px 10px;
-                font-size: 13px;
-                font-weight: 500;
-                border-radius: 999px;
-                background: rgba(255, 255, 255, 0.217);
-                backdrop-filter: blur(14px);
-                -webkit-backdrop-filter: blur(14px);
-                border: 1px solid rgba(0, 0, 0, 0.08);
-                box-shadow: 0 0px 5px rgba(0, 0, 0, 0.327);
-                white-space: nowrap;
-            }
-
-            .links::before,
-            .links::after {
-                content: "";
-                flex: 0 0 8px;
-            }
-
-            .links {
-                scroll-snap-type: x mandatory;
-            }
-
-            .lnk {
-                scroll-snap-align: center;
-            }
-
-            .logo {
-                font-size: 13px;
-            }
-
-            .img-account {
-                width: 38px;
-            }
-
-            .search-wrapper {
-                position: relative;
-                width: 44px;
-                height: 44px;
-            }
-
-            .nav-search {
-                width: 44px;
-                height: 44px;
-                background: rgba(0, 0, 0, 0.08);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 2;
-                right: -10px;
-            }
-
-            .search-wrapper.active .search-input {
-                width: 235px;
-                height: 55px;
-                opacity: 1;
-                pointer-events: auto;
-                position: absolute;
-                top: -5px;
-                right: -85px;
-                background: #fff;
-                border: 1px solid rgba(0, 0, 0, 0.12);
-            }
-
-            .content {
-                padding: 90px 14px 60px;
-            }
-
-
-        }
-    </style>
-
-    <!-- slider ==> news/ADS -->
-    <style>
-        .container {
-            position: absolute;
-            transform: translate(0, -3%);
-            width: 100%;
-            margin: auto;
-            height: 400px;
-            background: #ffffff00;
-            border-radius: 20px;
-        }
-
-        .container .slide {
-            border-radius: 20px;
-        }
-
-        .container .slide .item {
-            width: 150px;
-            height: 150px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            transform: translate(-250%, 60%);
-            border-radius: 50%;
-            box-shadow: 0 0 10px #000000;
-            background-position: 50% 50%;
-            background-size: cover;
-            display: inline-block;
-            transition: all 0.5s;
-        }
-
-        .slide .item:nth-child(1) {
-            top: 0;
-            left: 0;
-            transform: translate(0, 0);
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-            transition: all .5s;
-        }
-
-        .slide .item:nth-child(2) {
-            left: 62%;
-        }
-
-        .slide .item:nth-child(3) {
-            left: calc(62% + 120px);
-        }
-
-        .slide .item:nth-child(4) {
-            left: calc(62% + 240px);
-        }
-
-        .slide .item:nth-child(n + 5) {
-            left: calc(62% + 360px);
-            opacity: 0;
-        }
-
-        .slide .item:nth-child(1) .content-slider {
-            display: block;
-        }
-
-        .slide .item:nth-child(2) .content-slider {
-            display: none;
-        }
-
-        .item .content-slider {
-            position: absolute;
-            top: 50%;
-            left: 100px;
-            width: 300px;
-            padding: 2%;
-            border-radius: 20px;
-            text-align: left;
-            color: #000000;
-            background-color: rgba(255, 255, 255, 0.424);
-            transform: translate(0, -50%);
-            font-family: system-ui;
-            display: none;
-        }
-
-        .content-slider .name {
-            font-size: 40px;
-            text-transform: uppercase;
-            font-weight: bold;
-            opacity: 0;
-            animation: animate 1s ease-in-out 1 forwards;
-        }
-
-        .content-slider .des {
-            margin-top: 10px;
-            margin-bottom: 20px;
-            font-weight: bold;
-            opacity: 0;
-            animation: animate 1s ease-in-out 0.3s 1 forwards;
-        }
-
-        .content-slider button {
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            opacity: 0;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.673);
-            transition: all 0.5s;
-            animation: animate 1s ease-in-out 0.6s 1 forwards;
-        }
-
-        .content-slider button:hover {
-            background-color: rgb(255, 255, 255);
-        }
-
-        @keyframes animate {
-            from {
-                opacity: 0;
-                transform: translate(0, 100px);
-                filter: blur(33px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translate(0);
-                filter: blur(0);
-            }
-        }
-
-        .slider-btn {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-            right: 10%;
-            bottom: 0;
-            transform: translate(8%, 100%);
-            width: 100%;
-            align-items: center;
-            text-align: center;
-            position: absolute;
-            bottom: 70px;
-        }
-
-        .slider-btn button {
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            margin: 0 5px;
-            border: 0;
-            box-shadow: 0 0 5px rgb(0, 0, 0);
-            transition: 0.3s;
-            background: rgba(255, 255, 255, 0.549);
-        }
-
-        .slider-btn button:hover {
-            color: #000000;
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.878);
-            border-radius: 10px;
-        }
-
-        .prev {
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-            font-weight: bold;
-            display: none;
-        }
-
-        .next {
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        @media (max-width: 490px) {
-
-            .container {
-                width: 100%;
-                height: auto;
-                transform: none;
-                position: relative;
-                border-radius: 10px;
-                padding: 10px;
-            }
-
-            .hero {
-                width: 102%;
-                transform: translateX(1%);
-                height: auto;
-                border-radius: 0;
-                border-radius: 10px;
-            }
-
-            .container .slide {
-                height: 420px;
-                position: relative;
-            }
-
-            .container .slide .item {
-                width: 100%;
-                height: 420px;
-                top: 0;
-                left: 0;
-                transform: none;
-                border-radius: 15px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.584);
-            }
-
-            .slide .item:not(:first-child) {
-                display: none;
-            }
-
-            .item .content-slider {
-                display: block !important;
-                width: 90%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                text-align: center;
-            }
-
-            .content-slider .name {
-                font-size: 24px;
-            }
-
-            .content-slider .des {
-                font-size: 13px;
-            }
-
-            .slider-btn {
-                position: absolute;
-                bottom: 20px;
-                left: 0;
-                right: 0;
-                transform: translate(0);
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0 14px;
-                gap: 0;
-            }
-
-            .slider-btn button {
-                border-radius: 10px;
-            }
-
-            .prev,
-            .next {
-                display: block;
-                width: 38px;
-                height: 70px;
-            }
-        }
-
-        .side-card {
-            width: 240px;
-            min-height: 400px;
-            /* padding: 20px; */
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            transition: .3s;
-        }
-
-        .side-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .side-card h3 {
-            font-size: 18px;
-            margin-bottom: 14px;
-            color: #111;
-        }
-
-        .side-card p {
-            font-size: 14px;
-            line-height: 1.8;
-            color: rgba(0, 0, 0, 0.75);
-        }
-
-        .side-card a {
-            margin-top: auto;
-
-            text-decoration: none;
-
-            padding: 10px 16px;
-
-            border-radius: 12px;
-
-            background: rgba(98, 17, 237, 0.15);
-
-            color: #3000b3;
-            font-weight: 700;
-
-            text-align: center;
-
-            transition: .3s;
-        }
-
-        .side-card a:hover {
-            background: rgba(98, 17, 237, 0.25);
-        }
-
-        .con-card {
-            padding: 20px;
-            background: #2A7B9B;
-            background: linear-gradient(319deg, rgba(42, 123, 155, 0) 0%, rgba(87, 119, 199, 0) 26%, rgba(83, 116, 237, 0.4) 100%);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-            border: 1px solid rgba(218, 218, 218, 0.3);
-            box-shadow:
-                0 0 10px rgba(0, 0, 0, 0.317),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        }
-
-        .con-card h3 {
-            margin-bottom: 18px;
-        }
-
-        .con-item {
-            padding: 12px 14px;
-
-            margin-bottom: 10px;
-
-            border-radius: 12px;
-
-            background: rgba(255, 255, 255, .35);
-
-            border: 1px solid rgba(255, 255, 255, .25);
-
-            font-size: 13px;
-
-            cursor: pointer;
-
-            transition: .25s;
-        }
-
-        .con-item:hover {
-            background: rgba(255, 255, 255, .55);
-            transform: translateX(-3px);
-        }
-
-        .hero-layout {
-            width: min(1400px, 95%);
-            margin: auto;
-            padding-top: 8%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .hero {
-            flex: 1;
-        }
-
-        .more-con {
-            margin: auto;
-        }
-
-        .con-card .more-con {
-            font-weight: bold;
-            transition: transform .3s ease;
-        }
-
-        .con-card:hover .more-con {
-            transform: scale(1.3) rotate(360deg);
-        }
-
-        .side-right {
-            background: #2A7B9B;
-            background: linear-gradient(319deg, rgba(42, 123, 155, 0) 0%, rgba(87, 119, 199, 0) 26%, rgba(83, 116, 237, 0.4) 100%);
-            border-radius: 20px;
-            padding: 20px;
-            margin: 2%;
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-            border: 1px solid rgba(198, 198, 198, 0.3);
-            box-shadow:
-                0 0 10px rgba(0, 0, 0, 0.236),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        }
-
-        .side-right p {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .side-right h3 {
-            font-size: 20px;
-            font-weight: bold;
-            color: #3000b3;
-        }
-
-        .stats {
-            min-height: 150px;
-
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-
-            text-align: center;
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: 700;
-            color: #3000b3;
-            margin: auto 5px;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: rgba(0, 0, 0, .7);
-        }
-
-        @media (max-width: 490px) {
-
-            .hero-layout {
-                flex-direction: column;
-                gap: 5px;
-                margin-top: 20%;
-            }
-
-            .side-card {
-                width: 350px;
-                max-width: 100%;
-                min-height: auto;
-            }
-
-            .hero {
-                width: 100%;
-            }
-
-            .side-right p {
-                font-size: 19px;
-                font-weight: bold;
-            }
-
-            .side-right h3 {
-                font-size: 21px;
-                font-weight: bold;
-                color: #3000b3;
-            }
-        }
-    </style>
-
-    <!-- tracker -->
-    <style>
-        .bar-wrap {
-            margin: 100px auto 0;
-            margin-top: 100px;
-            max-width: 90%;
-            overflow: hidden;
-            padding: 12px 0;
-            background: rgba(0, 0, 0, 0.263);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 0.5px solid rgba(255, 255, 255, 0.12);
-            border-bottom: 0.5px solid rgba(255, 255, 255, 0.12);
-            border-radius: 50px;
-            position: relative;
-        }
-
-        .bar-track {
-            display: flex;
-            justify-content: center;
-            flex-wrap: nowrap;
-            width: 100%;
-        }
-
-        .feat {
-            display: flex;
-            align-items: center;
-            gap: 1px;
-            padding: 8px 28px;
-            border-right: 0.5px solid rgba(255, 255, 255, 0.1);
-            white-space: nowrap;
-            cursor: default;
-            font-family: sans-serif;
-        }
-
-        .feat i {
-            font-size: 18px;
-            color: #470cf9;
-        }
-
-        .feat-title {
-            font-size: 13px;
-            font-weight: bold;
-            color: rgb(0, 0, 0);
-        }
-
-        .feat-sub {
-            font-size: 11px;
-            color: rgba(0, 0, 0, 0.603);
-        }
-
-        .fade-l,
-        .fade-r {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 60px;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .fade-l {
-            left: 0;
-        }
-
-        .fade-r {
-            right: 0;
-        }
-
-        @media (max-width: 490px) {
-
-            .bar-wrap {
-                background: transparent;
-                border: none;
-                padding: 10px;
-                border-radius: 0px;
-                margin: 0 auto 0;
-            }
-
-            .bar-track {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 5px;
-                padding: 0 14px;
-            }
-
-            .feat {
-                display: flex;
-                align-items: flex-start;
-                gap: 10px;
-                padding: 12px 12px;
-                border-radius: 14px;
-                background: rgba(255, 255, 255, 0.75);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border: 1px solid rgba(0, 0, 0, 0.06);
-                box-shadow: 0 0 5px rgba(0, 0, 0, 0.186);
-                min-height: 70px;
-            }
-
-            .feat i {
-                font-size: 18px;
-                flex-shrink: 0;
-            }
-
-            .feat-title {
-                font-size: 12px;
-                font-weight: 600;
-            }
-
-            .feat-sub {
-                font-size: 10px;
-                line-height: 1.3;
-                opacity: 0.8;
-            }
-
-            .fade-l,
-            .fade-r {
-                display: none;
-            }
-        }
-    </style>
-
-    <!-- offer-slider -->
-    <style>
-        .ps-wrap {
-            max-width: 99%;
-            margin: 40px auto 0;
-            background: #2A7B9B;
-            background: linear-gradient(133deg, rgba(42, 123, 155, 0.26) 0%, rgba(87, 119, 199, 0) 20%, rgba(83, 116, 237, 0.29) 100%);
-            border-radius: 20px;
-            padding: 24px 20px;
-            font-family: sans-serif;
-            direction: rtl;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.493);
-        }
-
-        .ps-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .ps-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: rgb(0, 0, 0);
-            padding-right: 2%;
-        }
-
-        .ps-scroll {
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            padding-bottom: 4px;
-            scroll-snap-type: x mandatory;
-        }
-
-        .ps-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        .pc {
-            flex: 0 0 180px;
-            background: rgba(98, 98, 98, 0.19);
-            border: 1px solid rgba(42, 42, 42, 0.15);
-            border-radius: 16px;
-            padding: 16px 14px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            scroll-snap-align: start;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: background 0.2s, border 0.2s;
-            position: relative;
-        }
-
-        .pc:hover {
-            background: rgba(255, 255, 255, 0.11);
-            border-color: rgba(167, 139, 250, 0.4);
-        }
-
-        .pc-img {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            overflow: visible;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .pc-img img {
-            width: 180px;
-            height: 150px;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 0.35s ease, box-shadow 0.35s ease, height .35s ease, margin-top .35s ease;
-            display: block;
-            border-radius: 10px;
-        }
-
-        .pc:hover .pc-img img {
-            height: 180px;
-            margin-top: 35px;
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-            z-index: 5;
-        }
-
-        .pc-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: #6211ed;
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 100px;
-        }
-
-        .pc-name {
-            font-size: 12.5px;
-            font-weight: 500;
-            color: rgba(1, 1, 1, 0.88);
-            line-height: 1.5;
-            min-height: 36px;
-        }
-
-        .pc-old {
-            font-size: 13px;
-            color: rgba(0, 0, 0, 0.344);
-            text-decoration: line-through;
-        }
-
-        .pc-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: #002ccb;
-        }
-
-        .pc-unit {
-            font-size: 11px;
-            color: rgb(0, 0, 0);
-            margin-right: 2px;
-        }
-
-        .pc-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: auto;
-        }
-
-        .pc-cart {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            background: rgba(167, 139, 250, 0.743);
-            border: 0.5px solid rgba(0, 0, 0, 0.204);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.2s;
-            color: #000000;
-            font-size: 16px;
-        }
-
-        .pc-cart:hover {
-            background: rgba(167, 139, 250, 0.4);
-        }
-
-        .ps-promo {
-            flex: 0 0 160px;
-            background: linear-gradient(145deg, rgba(192, 210, 255, 0.212), rgba(167, 139, 250, 0.608));
-            border: 0.5px solid rgba(167, 139, 250, 0.4);
-            border-radius: 16px;
-            padding: 20px 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            scroll-snap-align: start;
-            backdrop-filter: blur(12px);
-            text-align: center;
-        }
-
-        .ps-promo-icon {
-            font-size: 40px;
-        }
-
-        .ps-promo-text {
-            font-size: 15px;
-            font-weight: 700;
-            color: rgb(255, 255, 255);
-            line-height: 1.4;
-        }
-
-        .ps-promo-btn {
-            font-size: 12px;
-            color: #000000;
-            font-weight: bold;
-            border: 0.5px solid rgba(167, 139, 250, 0.5);
-            border-radius: 100px;
-            padding: 5px 14px;
-            cursor: pointer;
-            background: rgba(167, 139, 250, 0.1);
-            box-shadow: 0 0 4px rgba(6, 6, 6, 0.46);
-            white-space: nowrap;
-        }
-
-        .ps-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .ps-nav {
-            display: flex;
-            gap: 8px;
-        }
-
-        .ps-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50px;
-            border: 0.5px solid rgba(82, 24, 255, 0.35);
-            background: rgba(82, 24, 255, 0.254);
-            color: rgb(0, 0, 0);
-            cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.2s;
-        }
-
-        .ps-btn:hover {
-            background: rgba(82, 24, 255, 0.35);
-        }
-
-        .offer-layout {
-            display: flex;
-            gap: 16px;
-            width: min(1400px, 98%);
-            margin: 10px auto 0;
-            align-items: stretch;
-        }
-
-        .ps-wrap {
-            flex: 0 0 80%;
-        }
-
-        .deal-col {
-            flex: 0 0 19%;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding-top: 3%;
-        }
-
-        .featured-deal {
-            background: linear-gradient(160deg,
-                    rgba(255, 70, 70, 0.745),
-                    rgba(90, 40, 255, 0.717));
-
-            border-radius: 22px;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-
-            box-shadow: 0 0 5px rgb(0, 0, 0);
-
-            overflow: hidden;
-        }
-
-        .deal-badge {
-            background: linear-gradient(135deg, #ff2e2edf, #ff7818de);
-            color: white;
-            height: 70px;
-            padding: 15px 10px;
-            border-radius: 50px;
-
-            font-size: 25px;
-            font-weight: 700;
-            text-align: center;
-
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.583);
-        }
-
-        .price-box {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            justify-content: start;
-            align-items: flex-end;
-        }
-
-        .old {
-            font-size: 16px;
-            opacity: 1;
-            text-decoration: line-through;
-        }
-
-        .price {
-            font-size: 22px;
-            font-weight: 800;
-            color: #2f00ff;
-        }
-
-        .deal-img {
-            width: 100%;
-            height: 150px;
-            border-radius: 14px;
-            overflow: visible;
-            position: relative;
-        }
-
-        .deal-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 14px;
-            transition: transform 0.35s ease, box-shadow 0.35s ease, height .35s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .featured-deal:hover .deal-img img {
-            height: 200px;
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-            z-index: 5;
-        }
-
-        .deal-content {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .deal-title {
-            font-size: 13px;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        .deal-btn {
-            padding: 9px 10px;
-            border-radius: 10px;
-
-            border: none;
-            cursor: pointer;
-
-            background: linear-gradient(135deg, #6a11ff, #2575fc);
-            color: white;
-
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .deal-btn:hover {
-            transform: scale(1.03);
-            opacity: 0.9;
-        }
-
-        @media (max-width: 490px) {
-
-            .ps-wrap {
-                background: rgba(161, 169, 255, 0.303);
-                box-shadow: 0 0 8px rgba(128, 128, 128, 0.546);
-                width: 100%;
-                max-width: 96%;
-                margin: 25px auto 0;
-                border-radius: 10px;
-                padding: 14px 1px;
-            }
-
-            .ps-scroll {
-                display: grid;
-                grid-auto-flow: column;
-                grid-template-rows: repeat(1, auto);
-                gap: 12px;
-                overflow-x: auto;
-                overflow-y: hidden;
-                margin: 2px;
-                padding-bottom: 8px;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .ps-scroll::-webkit-scrollbar {
-                display: none;
-            }
-
-            .pc,
-            .ps-promo {
-                width: 240px;
-                scroll-snap-align: start;
-            }
-
-            .ps-title {
-                padding-right: 5%;
-            }
-
-            .offer-layout {
-                flex-direction: column;
-            }
-
-            .ps-wrap,
-            .featured-deal {
-                flex: 0 0 100%;
-            }
-
-            .featured-deal {
-                min-height: 160px;
-            }
-        }
-    </style>
-
-    <!-- category -->
-    <style>
-        .cat-wrap {
-            width: min(1400px, 96%);
-            margin: 40px auto 0;
-            padding: 20px;
-            border-radius: 20px;
-
-            background: linear-gradient(135deg,
-                    rgba(42, 123, 155, 0.18),
-                    rgba(82, 24, 255, 0.12));
-
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-            backdrop-filter: blur(12px);
-        }
-
-        .cat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .cat-title {
-            font-size: 18px;
-            font-weight: 800;
-            color: #000;
-        }
-
-        .cat-more {
-            font-size: 13px;
-            color: rgba(0, 0, 0, 0.6);
-            text-decoration: none;
-        }
-
-        /* GRID دسکتاپ */
-        .cat-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 12px;
-        }
-
-        .cat-card {
-            background: rgba(255, 255, 255, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 16px;
-
-            padding: 16px 10px;
-            text-align: center;
-
-            cursor: pointer;
-            transition: 0.25s;
-            backdrop-filter: blur(10px);
-        }
-
-        .cat-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.55);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .cat-icon {
-            font-size: 26px;
-            margin-bottom: 8px;
-        }
-
-        .cat-name {
-            font-size: 12.5px;
-            font-weight: 600;
-            color: #111;
-        }
-
-
-
-        /* موبایل */
-        @media (max-width: 768px) {
-            .cat-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .cat-card {
-                scroll-snap-align: start;
-            }
-        }
-    </style>
-
-    <!-- best-sellers -->
-    <style>
-        .bs-wrap {
-            width: min(1400px, 96%);
-            margin: 40px auto 0;
-            padding: 20px;
-            border-radius: 20px;
-
-            background: linear-gradient(135deg,
-                    rgba(42, 123, 155, 0.18),
-                    rgba(82, 24, 255, 0.12));
-
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        /* header */
-        .bs-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .bs-title {
-            font-size: 18px;
-            font-weight: 800;
-            color: #000;
-        }
-
-        .bs-more {
-            font-size: 13px;
-            color: rgba(0, 0, 0, 0.6);
-            text-decoration: none;
-        }
-
-        /* grid */
-        .bs-grid {
-            display: grid;
-            grid-auto-flow: column;
-            grid-template-rows: repeat(1, auto);
-            grid-auto-columns: 200px;
-            gap: 14px;
-            width: max-content;
-        }
-
-        /* card */
-        .bs-card {
-            flex: 0 0 180px;
-            background: rgba(98, 98, 98, 0.19);
-            border: 1px solid rgba(42, 42, 42, 0.15);
-            border-radius: 16px;
-            padding: 16px 14px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            scroll-snap-align: start;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: background 0.2s, border 0.2s;
-            position: relative;
-        }
-
-        .bs-card:hover {
-            background: rgba(255, 255, 255, 0.11);
-            border-color: rgba(167, 139, 250, 0.4);
-        }
-
-        /* image */
-        .bs-img {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            overflow: visible;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .bs-img img {
-            width: 180px;
-            height: 150px;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 0.35s ease, box-shadow 0.35s ease, height .35s ease, margin-top .35s ease;
-            display: block;
-            border-radius: 10px;
-        }
-
-        .bs-card:hover .bs-img img {
-            height: 180px;
-            margin-top: 35px;
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-            z-index: 5;
-        }
-
-        /* text */
-        .bs-name {
-            font-size: 12.5px;
-            font-weight: 500;
-            color: rgba(1, 1, 1, 0.88);
-            line-height: 1.5;
-            min-height: 36px;
-        }
-
-        /* price */
-        .bs-price-box {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .bs-old {
-            font-size: 12px;
-            text-decoration: line-through;
-            opacity: 0.5;
-        }
-
-        .bs-price {
-            font-size: 16px;
-            font-weight: 800;
-            color: #2a00ff;
-        }
-
-        /* button */
-        .bs-btn {
-            padding: 8px 10px;
-            border: none;
-            border-radius: 12px;
-
-            background: linear-gradient(135deg, #6a11ff, #2575fc);
-            color: white;
-
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .bs-scroll {
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            padding-bottom: 10px;
-        }
-
-        .bs-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        .bs-section {
-            position: relative;
-        }
-
-        .bs-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-
-            width: 44px;
-            height: 44px;
-
-            border: none;
-            border-radius: 50%;
-
-            cursor: pointer;
-
-            backdrop-filter: blur(10px);
-
-            background: rgba(255, 255, 255, .7);
-
-            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-
-            z-index: 10;
-        }
-
-        .bs-prev {
-            right: -22px;
-        }
-
-        .bs-next {
-            left: -22px;
-        }
-
-        .bs-arrow:hover {
-            transform: translateY(-50%) scale(1.08);
-        }
-
-        @media (max-width:768px) {
-
-            .bs-wrap {
-                padding: 14px;
-            }
-
-            .bs-grid {
-                grid-template-rows: repeat(2, auto);
-                grid-auto-columns: 190px;
-            }
-
-            .bs-card {
-                height: auto;
-                min-height: 290px;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .bs-img {
-                height: 150px;
-            }
-
-            .bs-img img {
-                width: 100%;
-                height: 150px;
-                margin-top: 0 !important;
-                transform: none !important;
-            }
-
-            .bs-name {
-                min-height: 42px;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-
-                overflow: hidden;
-            }
-
-            .bs-price-box {
-                margin-top: -20px;
-            }
-
-            .bs-btn {
-                margin-top: 8px;
-            }
-
-            .bs-arrow {
-                display: none;
-            }
-        }
-    </style>
-
-    <!-- edu -->
-    <style>
-        .edu-wrap {
-            width: min(1400px, 96%);
-            margin: 40px auto;
-
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 16px;
-        }
-
-        .edu-main {
-            position: relative;
-            aspect-ratio: 16/9;
-
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.478);
-        }
-
-        .edu-main img {
-            position: absolute;
-            inset: 0;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .edu-overlay {
-            position: absolute;
-            inset: 0;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-
-            padding: 30px;
-
-            background:
-                linear-gradient(to top,
-                    rgba(83, 116, 237, 0.999),
-                    transparent 60%);
-
-            color: #fff;
-        }
-
-        .edu-badge {
-            width: fit-content;
-
-            padding: 6px 12px;
-
-            border-radius: 50px;
-
-            background: #6a11ff;
-
-            font-size: 12px;
-        }
-
-        .edu-overlay h2 {
-            margin: 12px 0 8px;
-        }
-
-        .edu-btn {
-            width: fit-content;
-
-            margin-top: 12px;
-
-            padding: 10px 18px;
-
-            border-radius: 12px;
-
-            background: #fff;
-
-            color: #000;
-
-            text-decoration: none;
-        }
-
-        .edu-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .edu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.663);
-            background: #2A7B9B;
-            background: linear-gradient(133deg, rgba(255, 255, 255, 0) 0%, rgba(87, 119, 199, 0) 20%, rgba(83, 116, 237, 0.545) 100%);
-            text-decoration: none;
-            color: #000;
-            transition: .3s;
-        }
-
-        .edu-item:hover {
-            transform: translateX(-8px);
-        }
-
-        .edu-item img {
-            width: 90px;
-            height: 70px;
-
-            object-fit: cover;
-
-            border-radius: 12px;
-        }
-
-        @media(max-width:768px) {
-
-            .edu-wrap {
-                grid-template-columns: 1fr;
-            }
-
-        }
-    </style>
-
-    <!-- blog -->
-    <style>
-        .blog-wrap {
-            width: min(1400px, 96%);
-            margin: 60px auto 0;
-            padding: 20px;
-            border-radius: 20px;
-
-            background: linear-gradient(135deg,
-                    rgba(42, 123, 155, 0.14),
-                    rgba(82, 24, 255, 0.10));
-
-            backdrop-filter: blur(12px);
-        }
-
-        .blog-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-
-        .blog-title {
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        .blog-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        /* featured */
-        .blog-featured {
-            position: relative;
-            border-radius: 18px;
-            overflow: hidden;
-            height: 320px;
-        }
-
-        .blog-featured img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.4s;
-        }
-
-        .blog-featured:hover img {
-            transform: scale(1.05);
-        }
-
-        .blog-featured .overlay {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(to top, rgba(83, 116, 237, 0.591), transparent);
-            color: white;
-        }
-
-        .blog-featured .tag {
-            background: #6a11ff;
-            padding: 3px 10px;
-            border-radius: 100px;
-            font-size: 11px;
-            width: fit-content;
-        }
-
-        .blog-featured .title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-top: 6px;
-        }
-
-        /* list */
-        .blog-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .blog-item {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-
-            background: rgba(255, 255, 255, 0.3);
-            padding: 10px;
-            border-radius: 12px;
-        }
-
-        .blog-item img {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-
-        .blog-item .t {
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .blog-item .s {
-            font-size: 11px;
-            opacity: 0.6;
-        }
-
-        @media (max-width: 768px) {
-            .blog-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .blog-featured {
-                height: 220px;
-            }
-        }
-    </style>
-
-    <!-- FAQ -->
-    <style>
-        .faq-wrap {
-            width: min(1100px, 96%);
-            margin: 60px auto 0;
-            padding: 20px;
-
-            border-radius: 20px;
-            background: linear-gradient(135deg,
-                    rgba(42, 123, 155, 0.12),
-                    rgba(82, 24, 255, 0.08));
-
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
-        }
-
-        .faq-header {
-            margin-bottom: 18px;
-        }
-
-        .faq-title {
-            font-size: 18px;
-            font-weight: 800;
-            color: #000;
-        }
-
-        .faq-sub {
-            font-size: 12px;
-            opacity: 0.6;
-            margin-top: 4px;
-        }
-
-        /* accordion */
-        .faq-item {
-            border-radius: 14px;
-            overflow: hidden;
-            margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-        }
-
-        .faq-q {
-            width: 100%;
-            padding: 14px;
-            background: none;
-            border: none;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: 0.3s ease;
-            padding: 0 14px;
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        /* active state */
-        .faq-item.active .faq-a {
-            max-height: 120px;
-            padding-bottom: 12px;
-        }
-    </style>
-
-    <!-- footer -->
-    <style>
-        .site-footer {
-            margin-top: 80px;
-            background: linear-gradient(135deg,
-                    rgba(42, 123, 155, 0.18),
-                    rgba(82, 24, 255, 0.12));
-
-            backdrop-filter: blur(5px);
-            padding: 40px 20px 20px;
-            border-radius: 5rem 5rem 0 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.43);
-        }
-
-        .footer-wrap {
-            width: min(1200px, 96%);
-            margin: auto;
-
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .f-title {
-            font-size: 16px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            color: #000;
-        }
-
-        .f-col a {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 8px;
-            text-decoration: none;
-            color: rgba(0, 0, 0, 0.7);
-            transition: 0.2s;
-        }
-
-        .f-col a:hover {
-            color: #2a00ff;
-            transform: translateX(-3px);
-        }
-
-        .f-text {
-            font-size: 13px;
-            opacity: 0.7;
-            line-height: 1.7;
-        }
-
-        .f-badges {
-            margin-top: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        .f-contact {
-            font-size: 13px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 10px;
-        }
-
-        .f-social {
-            display: flex;
-            gap: 10px;
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        .f-bottom {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 12px;
-            opacity: 0.6;
-        }
-
-        @media (max-width: 768px) {
-            .footer-wrap {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -2411,117 +215,117 @@
 
             <div class="ps-scroll" id="psScroll">
 
-                <div class="pc">
-                    <div class="pc-badge">13%</div>
-                    <div class="pc-img"><img src="img/product/prod2.jpeg" alt=""></div>
-                    <div class="pc-name">بسته دونه برفی 500 عددی</div>
-                    <div class="pc-footer">
-                        <div>
-                            <div class="pc-old">800,000</div>
-                            <div class="pc-price">600,000 <span class="pc-unit">تومان</span></div>
+                <div class="product-card">
+                    <div class="product-card__badge">13%</div>
+                    <div class="product-card__img"><img src="img/product/prod2.jpeg" alt=""></div>
+                    <div class="product-card__name">بسته دونه برفی 500 عددی</div>
+                    <div class="product-card__footer">
+                        <div class="product-card__price-box">
+                            <div class="product-card__old ">800,000</div>
+                            <div class="product-card__price">600,000 <span class="product-card__unit">تومان</span></div>
                         </div>
-                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                        <div class="product-card__cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
                 </div>
 
-                <div class="pc">
-                    <div class="pc-badge">13%</div>
-                    <div class="pc-img"><img src="img/product/prod3.jpeg" alt=""></div>
-                    <div class="pc-name">پازل 1000 تکه BrainFlakes بازل سه بعدی</div>
-                    <div class="pc-footer">
+                <div class="product-card">
+                    <div class="product-card__badge">13%</div>
+                    <div class="product-card__img"><img src="img/product/prod3.jpeg" alt=""></div>
+                    <div class="product-card__name">پازل 1000 تکه BrainFlakes بازل سه بعدی</div>
+                    <div class="product-card__footer">
                         <div>
-                            <div class="pc-old">1,900,000</div>
-                            <div class="pc-price">1,100,000 <span class="pc-unit">تومان</span></div>
+                            <div class="product-card__old">1,900,000</div>
+                            <div class="product-card__price">1,100,000 <span class="product-card__unit">تومان</span></div>
                         </div>
-                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                        <div class="product-card__cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
                 </div>
 
-                <div class="pc">
-                    <div class="pc-badge">13%</div>
-                    <div class="pc-img"><img src="img/product/prod4.jpeg" alt=""></div>
-                    <div class="pc-name">کیت آموزشی روبوباکس مدل مینی</div>
-                    <div class="pc-footer">
+                <div class="product-card">
+                    <div class="product-card__badge">13%</div>
+                    <div class="product-card__img"><img src="img/product/prod4.jpeg" alt=""></div>
+                    <div class="product-card__name">کیت آموزشی روبوباکس مدل مینی</div>
+                    <div class="product-card__footer">
                         <div>
-                            <div class="pc-old">2,000,000</div>
-                            <div class="pc-price">1,750,000 <span class="pc-unit">تومان</span></div>
+                            <div class="product-card__old">2,000,000</div>
+                            <div class="product-card__price">1,750,000 <span class="product-card__unit">تومان</span></div>
                         </div>
-                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                        <div class="product-card__cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
                 </div>
 
-                <div class="pc">
-                    <div class="pc-badge">24%</div>
-                    <div class="pc-img"><img src="img/product/prod5.jpeg" alt=""></div>
-                    <div class="pc-name">کیت آموزشی روبوباکس مدل پرو</div>
-                    <div class="pc-footer">
+                <div class="product-card">
+                    <div class="product-card__badge">24%</div>
+                    <div class="product-card__img"><img src="img/product/prod5.jpeg" alt=""></div>
+                    <div class="product-card__name">کیت آموزشی روبوباکس مدل پرو</div>
+                    <div class="product-card__footer">
                         <div>
-                            <div class="pc-old">2,550,000</div>
-                            <div class="pc-price">1,950,000 <span class="pc-unit">تومان</span></div>
+                            <div class="product-card__old">2,550,000</div>
+                            <div class="product-card__price">1,950,000 <span class="product-card__unit">تومان</span></div>
                         </div>
-                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                        <div class="product-card__cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
                 </div>
 
-                <div class="pc">
-                    <div class="pc-badge">11%</div>
-                    <div class="pc-img"><img src="img/product/prod2.jpeg" alt=""></div>
-                    <div class="pc-name">پکیج رباتیک فول سطح 1 تا 4 مدل حرفه‌ای</div>
-                    <div class="pc-footer">
+                <div class="product-card">
+                    <div class="product-card__badge">11%</div>
+                    <div class="product-card__img"><img src="img/product/prod2.jpeg" alt=""></div>
+                    <div class="product-card__name">پکیج رباتیک فول سطح 1 تا 4 مدل حرفه‌ای</div>
+                    <div class="product-card__footer">
                         <div>
-                            <div class="pc-old">2,800,000</div>
-                            <div class="pc-price">2,500,000 <span class="pc-unit">تومان</span></div>
+                            <div class="product-card__old">2,800,000</div>
+                            <div class="product-card__price">2,500,000 <span class="product-card__unit">تومان</span></div>
                         </div>
-                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                        <div class="product-card__cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
                 </div>
 
-                <div class="pc">
-                    <div class="pc-badge">10%</div>
-                    <div class="pc-img"><img src="img/product/prod7.jpeg" alt=""></div>
-                    <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
-                    <div class="pc-footer">
+                <div class="product-card">
+                    <div class="product-card__badge">10%</div>
+                    <div class="product-card__img"><img src="img/product/prod7.jpeg" alt=""></div>
+                    <div class="product-card__name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                    <div class="product-card__footer">
                         <div>
-                            <div class="pc-old">5,000,000</div>
-                            <div class="pc-price">4,500,000 <span class="pc-unit">تومان</span></div>
+                            <div class="product-card__old">5,000,000</div>
+                            <div class="product-card__price">4,500,000 <span class="product-card__unit">تومان</span></div>
                         </div>
-                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                        <div class="product-card__cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
                 </div>
-                <div class="pc">
-                    <div class="pc-badge">10%</div>
-                    <div class="pc-img"><img src="img/product/prod1.jpeg" alt=""></div>
-                    <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
-                    <div class="pc-footer">
+                <div class="product-card">
+                    <div class="product-card__badge">10%</div>
+                    <div class="product-card__img"><img src="img/product/prod1.jpeg" alt=""></div>
+                    <div class="product-card__name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                    <div class="product-card__footer">
                         <div>
-                            <div class="pc-old">5,000,000</div>
-                            <div class="pc-price">4,500,000 <span class="pc-unit">تومان</span></div>
+                            <div class="product-card__old">5,000,000</div>
+                            <div class="product-card__price">4,500,000 <span class="product-card__unit">تومان</span></div>
                         </div>
-                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                        <div class="product-card__cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
                 </div>
-                <div class="pc">
-                    <div class="pc-badge">10%</div>
-                    <div class="pc-img"><img src="img/product/prod2.jpeg" alt=""></div>
-                    <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
-                    <div class="pc-footer">
+                <div class="product-card">
+                    <div class="product-card__badge">10%</div>
+                    <div class="product-card__img"><img src="img/product/prod2.jpeg" alt=""></div>
+                    <div class="product-card__name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                    <div class="product-card__footer">
                         <div>
-                            <div class="pc-old">5,000,000</div>
-                            <div class="pc-price">4,500,000 <span class="pc-unit">تومان</span></div>
+                            <div class="product-card__old">5,000,000</div>
+                            <div class="product-card__price">4,500,000 <span class="product-card__unit">تومان</span></div>
                         </div>
-                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                        <div class="product-card__cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
                 </div>
-                <div class="pc">
-                    <div class="pc-badge">10%</div>
-                    <div class="pc-img"><img src="img/product/prod3.jpeg" alt=""></div>
-                    <div class="pc-name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
-                    <div class="pc-footer">
+                <div class="product-card">
+                    <div class="product-card__badge">10%</div>
+                    <div class="product-card__img"><img src="img/product/prod3.jpeg" alt=""></div>
+                    <div class="product-card__name">فول پک رباتیک Advance Plus ویژه دو نفر</div>
+                    <div class="product-card__footer">
                         <div>
-                            <div class="pc-old">5,000,000</div>
-                            <div class="pc-price">4,500,000 <span class="pc-unit">تومان</span></div>
+                            <div class="product-card__old">5,000,000</div>
+                            <div class="product-card__price">4,500,000 <span class="product-card__unit">تومان</span></div>
                         </div>
-                        <div class="pc-cart"><i class="ti ti-shopping-cart"></i></div>
+                        <div class="product-card__cart"><i class="ti ti-shopping-cart"></i></div>
                     </div>
                 </div>
                 <div class="ps-promo">
@@ -2590,115 +394,120 @@
             <div class="bs-scroll" id="bestSellerScroll">
                 <div class="bs-grid">
 
-                    <div class="bs-card">
-                        <div class="bs-img">
-                            <div class="bs-img">
-                                <img src="img/product/prod1.jpeg" alt="">
-                            </div>
+                    <div class="product-card">
+                        <div class="product-card__badge">13%</div>
+                        <div class="product-card__img">
+                            <img src="img/product/prod1.jpeg" alt="">
                         </div>
-                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
-                        <div class="bs-price-box">
-                            <div class="bs-old">2,000,000</div>
-                            <div class="bs-price">1,450,000 تومان</div>
+                        <div class="product-card__name">کیت آموزشی رباتیک پایه</div>
+                        <div class="product-card__price-box">
+                            <div class="product-card__old">2,000,000</div>
+                            <div class="product-card__price">600,000 <span class="product-card__unit">تومان</span></div>
                         </div>
-                        <button class="bs-btn">افزودن به سبد</button>
+                        <button class="product-card__btn">افزودن به سبد</button>
                     </div>
 
-                    <div class="bs-card">
-                        <div class="bs-img"><img src="img/product/prod2.jpeg" alt=""></div>
-                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+                    <div class="product-card">
+                        <div class="product-card__badge">13%</div>
+                        <div class="product-card__img">
+                            <img src="img/product/prod2.jpeg" alt="">
+                        </div>
+                        <div class="product-card__name">کیت آموزشی رباتیک پایه</div>
 
-                        <div class="bs-price-box">
-                            <div class="bs-old">2,000,000</div>
-                            <div class="bs-price">1,450,000 تومان</div>
+                        <div class="product-card__price-box">
+                            <div class="product-card__old">2,000,000</div>
+                            <div class="product-card__price">600,000 <span class="product-card__unit">تومان</span></div>
                         </div>
 
-                        <button class="bs-btn">افزودن به سبد</button>
+                        <button class="product-card__btn">افزودن به سبد</button>
                     </div>
 
-                    <div class="bs-card">
-                        <div class="bs-img"><img src="img/product/prod3.jpeg" alt=""></div>
-                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+                    <div class="product-card">
+                        <div class="product-card__img"><img src="img/product/prod3.jpeg" alt=""></div>
+                        <div class="product-card__name">کیت آموزشی رباتیک پایه</div>
 
-                        <div class="bs-price-box">
-                            <div class="bs-old">2,000,000</div>
-                            <div class="bs-price">1,450,000 تومان</div>
+                        <div class="product-card__price-box">
+                            <!-- <div class="product-card__old">2,000,000</div> -->
+                            <div class="product-card__price">600,000 <span class="product-card__unit">تومان</span></div>
                         </div>
 
-                        <button class="bs-btn">افزودن به سبد</button>
+                        <button class="product-card__btn">افزودن به سبد</button>
                     </div>
 
-                    <div class="bs-card">
-                        <div class="bs-img"><img src="img/product/prod4.jpeg" alt=""></div>
-                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+                    <div class="product-card">
+                        <div class="product-card__img"><img src="img/product/prod4.jpeg" alt=""></div>
+                        <div class="product-card__name">کیت آموزشی رباتیک پایه</div>
 
-                        <div class="bs-price-box">
-                            <div class="bs-old">2,000,000</div>
-                            <div class="bs-price">1,450,000 تومان</div>
+                        <div class="product-card__price-box">
+                            <!-- <div class="product-card__old">2,000,000</div> -->
+                            <div class="product-card__price">600,000 <span class="product-card__unit">تومان</span></div>
                         </div>
 
-                        <button class="bs-btn">افزودن به سبد</button>
+                        <button class="product-card__btn">افزودن به سبد</button>
                     </div>
 
-                    <div class="bs-card">
-                        <div class="bs-img"><img src="img/product/prod5.jpeg" alt=""></div>
-                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+                    <div class="product-card">
+                        <div class="product-card__img"><img src="img/product/prod5.jpeg" alt=""></div>
+                        <div class="product-card__name">کیت آموزشی رباتیک پایه</div>
 
-                        <div class="bs-price-box">
-                            <div class="bs-old">2,000,000</div>
-                            <div class="bs-price">1,450,000 تومان</div>
+                        <div class="product-card__price-box">
+                            <!-- <div class="product-card__old">2,000,000</div> -->
+                            <div class="product-card__price">600,000 <span class="product-card__unit">تومان</span></div>
                         </div>
 
-                        <button class="bs-btn">افزودن به سبد</button>
+                        <button class="product-card__btn">افزودن به سبد</button>
                     </div>
 
-                    <div class="bs-card">
-                        <div class="bs-img"><img src="img/product/prod7.jpeg" alt=""></div>
-                        <div class="bs-name">کیت آموزشی رباتیک پایه</div>
+                    <div class="product-card">
+                        <div class="product-card__badge">13%</div>
+                        <div class="product-card__img"><img src="img/product/prod7.jpeg" alt=""></div>
+                        <div class="product-card__name">کیت آموزشی رباتیک پایه</div>
 
-                        <div class="bs-price-box">
-                            <div class="bs-old">2,000,000</div>
-                            <div class="bs-price">1,450,000 تومان</div>
+                        <div class="product-card__price-box">
+                            <div class="product-card__old">2,000,000</div>
+                            <div class="product-card__price">600,000 <span class="product-card__unit">تومان</span></div>
                         </div>
 
-                        <button class="bs-btn">افزودن به سبد</button>
+                        <button class="product-card__btn">افزودن به سبد</button>
                     </div>
 
 
-                    <div class="bs-card">
-                        <div class="bs-img"><img src="img/product/prod1.jpeg" alt=""></div>
-                        <div class="bs-name">پکیج قطعات الکترونیک کامل</div>
+                    <div class="product-card">
+                        <div class="product-card__badge">13%</div>
+                        <div class="product-card__img"><img src="img/product/prod1.jpeg" alt=""></div>
+                        <div class="product-card__name">پکیج قطعات الکترونیک کامل</div>
 
-                        <div class="bs-price-box">
-                            <div class="bs-old">۱,۸۰۰,۰۰۰</div>
-                            <div class="bs-price">۱,۲۰۰,۰۰۰ تومان</div>
+                        <div class="product-card__price-box">
+                            <div class="product-card__old">1,800,100</div>
+                            <div class="product-card__price">600,000 <span class="product-card__unit">تومان</span></div>
                         </div>
 
-                        <button class="bs-btn">افزودن به سبد</button>
+                        <button class="product-card__btn">افزودن به سبد</button>
                     </div>
 
-                    <div class="bs-card">
-                        <div class="bs-img"><img src="img/product/prod2.jpeg" alt=""></div>
-                        <div class="bs-name">ست آموزشی آردوینو حرفه‌ای</div>
+                    <div class="product-card">
+                        <div class="product-card__badge">13%</div>
+                        <div class="product-card__img"><img src="img/product/prod2.jpeg" alt=""></div>
+                        <div class="product-card__name">ست آموزشی آردوینو حرفه‌ای</div>
 
-                        <div class="bs-price-box">
-                            <div class="bs-old">۳,۰۰۰,۰۰۰</div>
-                            <div class="bs-price">۲,۲۵۰,۰۰۰ تومان</div>
+                        <div class="product-card__price-box">
+                            <div class="product-card__old">3,000,000</div>
+                            <div class="product-card__price">600,000 <span class="product-card__unit">تومان</span></div>
                         </div>
 
-                        <button class="bs-btn">افزودن به سبد</button>
+                        <button class="product-card__btn">افزودن به سبد</button>
                     </div>
 
-                    <div class="bs-card">
-                        <div class="bs-img"><img src="img/product/prod3.jpeg" alt=""></div>
-                        <div class="bs-name">ابزار کامل ساخت پروژه</div>
+                    <div class="product-card">
+                        <div class="product-card__img"><img src="img/product/prod3.jpeg" alt=""></div>
+                        <div class="product-card__name">ابزار کامل ساخت پروژه</div>
 
-                        <div class="bs-price-box">
-                            <div class="bs-old">۲,۵۰۰,۰۰۰</div>
-                            <div class="bs-price">۱,۹۹۰,۰۰۰ تومان</div>
+                        <div class="product-card__price-box">
+                            <div class="product-card__old">2,000,000</div>
+                            <div class="product-card__price">600,000 <span class="product-card__unit">تومان</span></div>
                         </div>
 
-                        <button class="bs-btn">افزودن به سبد</button>
+                        <button class="product-card__btn">افزودن به سبد</button>
                     </div>
 
                 </div>
@@ -2716,7 +525,7 @@
 
             <div class="edu-overlay">
                 <!-- میتونه بیشترین تخفیف یا بیشترین خرید یا هر چیزی باشه -->
-                <span class="edu-badge">بیشترین بازدید</span>
+                <span class="edu__badge">بیشترین بازدید</span>
 
                 <h2>آموزش ساخت ربات مسیریاب با آردوینو</h2>
 
@@ -2745,7 +554,7 @@
 
             <a href="#" class="edu-item">
                 <img src="img/edu/ardoino2.jpeg">
-                <span>آموزش طراحی PCB</span>
+                <span>آموزش طراحی product-cardB</span>
             </a>
 
             <a href="#" class="edu-item">
@@ -2856,7 +665,7 @@
                     مرجع فروش قطعات رباتیک و آموزش‌های تخصصی میکروکنترلر و الکترونیک
                 </p>
 
-                <div class="f-badges">
+                <div class="f__badges">
                     <div>✔ ضمانت کیفیت</div>
                     <div>✔ ارسال سریع</div>
                     <div>✔ پشتیبانی ۲۴/۷</div>

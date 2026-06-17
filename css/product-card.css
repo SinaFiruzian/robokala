@@ -10,7 +10,6 @@
   flex-direction: column;
   gap: 10px;
   scroll-snap-align: start;
-  /* width: 100%; */
   width: 200px;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);

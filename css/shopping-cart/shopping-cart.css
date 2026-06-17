@@ -36,7 +36,9 @@
 
        /* ================= CART ITEM ================= */
        .cart-items {
-           padding: 2%;
+           padding: 3% 2%;
+           background: var(--clr-grad-section);
+           border-radius: 25px;
        }
 
        .cart-item {
@@ -94,6 +96,12 @@
            font-size: 1.1rem;
            font-weight: 700;
            color: var(--clr-secondary-dark);
+           background: var(--clr-surface-glass);
+           padding: 1% 2%;
+           border-radius: 20px;
+           width: 100%;
+           max-width: 150px;
+           text-align: center;
        }
 
        .cart-item__actions {

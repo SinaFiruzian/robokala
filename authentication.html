@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="css/root.css">
+    <link rel="stylesheet" href="css/nav-and-body.css">
+    <link rel="stylesheet" href="css/warning-and-restor-msg.css">
+    <link rel="stylesheet" href="css/authentication/authentication.css">
+    <title>ورود | RoboKala</title>
+</head>
+<body>
+    <section class="auth-page">
+        <div class="auth-box">
+            <!-- auth-logo -->
+            <h1 class="auth-logo">RoboKala</h1>
+            <div class="auth-tabs">
+                <div class="tab-slider"></div>
+                <button class="auth-tab active" data-tab="login">
+                    ورود
+                </button>
+                <button class="auth-tab" data-tab="register">
+                    ثبت نام
+                </button>
+            </div>
+            <!-- auth -->
+            <div class="auth-forms">
+                <!-- ================= auth-form ================= -->
+                <form class="auth-form active glass-card" id="loginForm">
+                    <!-- phone (defult) -->
+                    <div class="form-group" id="loginPhoneGroup">
+                        <label>شماره موبایل</label>
+                        <div class="form-input-wrap">
+                            <i class="ti ti-phone"></i>
+                            <input type="tel" class="auth-input" id="loginPhone" placeholder="09xxxxxxxxx">
+                        </div>
+                    </div>
+                    <!-- OTP -->
+                    <div class="otp-section" id="loginOtpSection" style="display:none">
+                        <label style="font-size:0.88rem; color:var(--clr-text-muted)">کد تایید</label>
+                        <div class="otp-inputs">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                        </div>
+                        <div class="otp-timer">
+                            ارسال مجدد تا <span id="loginTimer">02:00</span>
+                            <button type="button" class="resend-btn" id="loginResend">ارسال مجدد</button>
+                        </div>
+                    </div>
+                    <!-- email (hide) -->
+                    <div class="form-group" id="loginEmailGroup" style="display:none">
+                        <label>ایمیل</label>
+                        <div class="form-input-wrap">
+                            <i class="ti ti-mail"></i>
+                            <input type="email" class="auth-input" id="loginEmail" placeholder="example@email.com">
+                        </div>
+                    </div>
+                    <!-- password (email) -->
+                    <div class="form-group" id="loginPasswordGroup" style="display:none">
+                        <label>رمز عبور</label>
+                        <div class="form-input-wrap">
+                            <i class="ti ti-lock"></i>
+                            <input type="password" class="auth-input" id="loginPassword" placeholder="رمز عبور">
+                            <button type="button" class="pass-toggle" id="loginPassToggle">
+                                <i class="ti ti-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- forgot-password -->
+                    <a href="#" class="forgot-link" id="forgotLink" style="display:none">رمز عبورتو فراموش کردی؟</a>
+                    <!-- button -->
+                    <button type="submit" class="auth-submit" id="loginSubmit">دریافت کد تایید</button>
+                    <!-- forgot-form -->
+                    <div class="forgot-form" id="forgotForm">
+                        <button type="button" class="back-btn" id="backFromForgot">
+                            <i class="ti ti-arrow-right"></i> بازگشت
+                        </button>
+                        <div class="form-group">
+                            <label>ایمیل حساب کاربری</label>
+                            <div class="form-input-wrap">
+                                <i class="ti ti-mail"></i>
+                                <input type="email" class="auth-input" placeholder="example@email.com">
+                            </div>
+                        </div>
+                        <button type="button" class="auth-submit" id="forgotSubmit">ارسال لینک بازیابی</button>
+                    </div>
+                    <!-- toggle email/phone-->
+                    <div class="login-method-wrap glass-card">
+                        <span class="login-method-label">روش ورود</span>
+                        <div class="toggle-switch">
+                            <span id="phoneLabel" class="active-label">موبایل</span>
+                            <button type="button" class="switch-track" id="methodSwitch">
+                                <div class="switch-thumb"></div>
+                            </button>
+                            <span id="emailLabel">ایمیل</span>
+                        </div>
+                    </div>
+                </form>
+                <!-- ================= registerForm ================= -->
+                <form class="auth-form glass-card" id="registerForm">
+
+                    <div class="form-group">
+                        <label>نام و نام خانوادگی</label>
+                        <div class="form-input-wrap">
+                            <i class="ti ti-user"></i>
+                            <input type="text" class="auth-input" placeholder="سینا فیروزیان" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>شماره موبایل</label>
+                        <div class="form-input-wrap">
+                            <i class="ti ti-phone"></i>
+                            <input type="tel" class="auth-input" id="registerPhone" placeholder="09xxxxxxxxx">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ایمیل <span class="optional-label">(اختیاری)</span></label>
+                        <div class="form-input-wrap">
+                            <i class="ti ti-mail"></i>
+                            <input type="email" class="auth-input" placeholder="example@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>رمز عبور</label>
+                        <div class="form-input-wrap">
+                            <i class="ti ti-lock"></i>
+                            <input type="password" class="auth-input" id="registerPassword"
+                                placeholder="حداقل ۸ کاراکتر" required>
+                            <button type="button" class="pass-toggle" id="registerPassToggle">
+                                <i class="ti ti-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- OTP register -->
+                    <div class="otp-section" id="registerOtpSection" style="display:none">
+                        <label style="font-size:0.88rem; color:var(--clr-text-muted)">کد تایید</label>
+                        <div class="otp-inputs">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                        </div>
+                        <div class="otp-timer">
+                            ارسال مجدد تا <span id="registerTimer">02:00</span>
+                            <button type="button" class="resend-btn" id="registerResend">ارسال مجدد</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="auth-submit">ثبت‌نام و دریافت کد</button>
+
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- ==================== script ==================== -->
+    <script src="js/authentication/authentication.js"></script>
+</body>
+</html>

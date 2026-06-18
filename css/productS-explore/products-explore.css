@@ -158,19 +158,21 @@
             justify-content: space-between;
             align-items: center;
             backdrop-filter: blur(2px);
+            background: var(--clr-primary);
         }
 
         .products-count {
-            font-size: 0.9rem;
-            color: var(--clr-text-muted);
+            font-size: 1.4rem;
+            color: var(--clr-text-white);
         }
 
         .sort-wrap {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 0.9rem;
-            color: var(--clr-text-muted);
+            font-size: 1.2rem;
+            color: var(--clr-text-white);
+
         }
 
         .custom-select {
@@ -189,8 +191,9 @@
             border: 1px solid var(--clr-border-purple);
             border-radius: 12px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             color: var(--clr-text);
+            color: var(--clr-text-white);
             transition: border-color 0.2s;
         }
 

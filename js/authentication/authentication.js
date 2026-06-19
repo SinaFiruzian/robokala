@@ -1,314 +1,420 @@
-       // ================= MESSAGE-ERROR =================
-        const Message = (() => {
-            const stack = document.createElement('div');
-            stack.className = 'message-stack';
-            document.body.appendChild(stack);
-            function show(text, type = 'info', action = null) {
-                const el = document.createElement('div');
-                el.className = `message ${type}`;
-                el.innerHTML = `
-            <span>${text}</span>
-            ${action ? `<button>${action.text}</button>` : ''}
-        `;
-                if (action) {
-                    el.querySelector('button').onclick = action.onClick;
-                }
-                stack.appendChild(el);
-                setTimeout(() => hide(el), 2500);
-                return el;
-            }
-            function hide(el) {
+       // ================= MESSAGE SYSTEM =================
+        function Message(type, text) {
+
+            const stack = getStack();
+
+            const el = document.createElement('div');
+            el.className = `message ${type}`;
+            el.innerHTML = `<span>${text}</span>`;
+
+            stack.appendChild(el);
+
+            setTimeout(() => {
                 el.classList.add('hide');
                 setTimeout(() => el.remove(), 200);
-            }
-            return {
-                show
-            };
-        })();
-        // ================= TABS =================
-        function updateFormsHeight() {
-            const wrapper = document.querySelector('.auth-forms');
-            const activeForm = document.querySelector('.auth-form.active');
-            if (!wrapper || !activeForm) return;
-            wrapper.style.height = activeForm.scrollHeight + 'px';
+            }, 2000);
         }
-        window.addEventListener('load', updateFormsHeight);
-        window.addEventListener('resize', updateFormsHeight);
-        document.querySelectorAll('.auth-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document
-                    .querySelectorAll('.auth-tab')
-                    .forEach(t => t.classList.remove('active'));
-                document
-                    .querySelectorAll('.auth-form')
-                    .forEach(f => f.classList.remove('active'));
-                tab.classList.add('active');
-                const targetForm = document.getElementById(
-                    tab.dataset.tab + 'Form'
-                );
-                targetForm.classList.add('active');
-                requestAnimationFrame(() => {
-                    updateFormsHeight();
-                });
-                const tabs = document.querySelector('.auth-tabs');
-                if (tab.dataset.tab === 'register') {
-                    tabs.classList.add('register-active');
-                } else {
-                    tabs.classList.remove('register-active');
-                }
-            });
-        });
-        // ================= LOGIN METHOD SWITCH =================
-        const methodSwitch = document.getElementById('methodSwitch');
-        const phoneLabel = document.getElementById('phoneLabel');
-        const emailLabel = document.getElementById('emailLabel');
+
+        function getStack() {
+            let stack = document.querySelector('.message-stack');
+
+            if (!stack) {
+                stack = document.createElement('div');
+                stack.className = 'message-stack';
+                document.body.appendChild(stack);
+            }
+
+            return stack;
+        }
+        // ================= SWITCH LOGIN/REGISTER =================
+        const btnLogin = document.getElementById('btnLogin');
+        const btnRegister = document.getElementById('btnRegister');
+        const switchBg = document.getElementById('switchBg');
+        const formsTrack = document.getElementById('formsTrack');
+        const greetingTitle = document.getElementById('greetingTitle');
+        const greetingDesc = document.getElementById('greetingDesc');
+
+        function goTo(mode) {
+            const isRegister = mode === 'register';
+            switchBg.classList.toggle('to-register', isRegister);
+            formsTrack.classList.toggle('to-register', isRegister);
+            btnLogin.classList.toggle('active', !isRegister);
+            btnRegister.classList.toggle('active', isRegister);
+
+            greetingTitle.textContent = isRegister ? 'به ما بپیوند!' : 'خوش برگشتی!';
+            greetingDesc.textContent = isRegister
+                ? 'برای شروع یک حساب کاربری جدید بساز'
+                : 'برای ادامه وارد حساب کاربری خودت شو';
+        }
+
+        btnLogin.addEventListener('click', () => goTo('login'));
+        btnRegister.addEventListener('click', () => goTo('register'));
+
+        // ================= LOGIN METHOD SWITCH (موبایل/ایمیل) =================
+        const loginMethodSwitch = document.getElementById('loginMethodSwitch');
+        const loginPhoneLbl = document.getElementById('loginPhoneLbl');
+        const loginEmailLbl = document.getElementById('loginEmailLbl');
         const loginPhoneGroup = document.getElementById('loginPhoneGroup');
         const loginEmailGroup = document.getElementById('loginEmailGroup');
         const loginPasswordGroup = document.getElementById('loginPasswordGroup');
-        const loginOtpSection = document.getElementById('loginOtpSection');
+        const loginOtpWrap = document.getElementById('loginOtpWrap');
         const forgotLink = document.getElementById('forgotLink');
-        const loginSubmit = document.getElementById('loginSubmit');
+        const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+
         let isEmailMode = false;
-        let otpSent = false;
-        methodSwitch.addEventListener('click', () => {
+        let loginOtpSent = false;
+
+        loginMethodSwitch.addEventListener('click', () => {
             isEmailMode = !isEmailMode;
-            methodSwitch.classList.toggle('on', isEmailMode);
-            phoneLabel.classList.toggle('active-label', !isEmailMode);
-            emailLabel.classList.toggle('active-label', isEmailMode);
-            const hideElement = (el) => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(10px)';
-                setTimeout(() => {
-                    el.style.display = 'none';
-                    updateFormsHeight?.();
-                }, 250);
-            };
-            const showElement = (el, display = 'flex') => {
-                el.style.display = display;
-                requestAnimationFrame(() => {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(10px)';
-                    requestAnimationFrame(() => {
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                        updateFormsHeight?.();
-                    });
-                });
-            };
+            loginMethodSwitch.classList.toggle('on', isEmailMode);
+            loginPhoneLbl.classList.toggle('on', !isEmailMode);
+            loginEmailLbl.classList.toggle('on', isEmailMode);
+
             if (isEmailMode) {
-                hideElement(loginPhoneGroup);
-                if (otpSent) {
-                    hideElement(loginOtpSection);
-                }
-                showElement(loginEmailGroup);
-                showElement(loginPasswordGroup);
+                loginPhoneGroup.style.display = 'none';
+                loginOtpWrap.classList.remove('open');
+                loginEmailGroup.style.display = 'flex';
+                loginPasswordGroup.style.display = 'flex';
                 forgotLink.style.display = 'block';
-                forgotLink.style.opacity = '0';
-                requestAnimationFrame(() => {
-                    forgotLink.style.opacity = '1';
-                });
-                loginSubmit.textContent = 'ورود';
+                loginSubmitBtn.textContent = 'ورود به حساب';
             } else {
-                hideElement(loginEmailGroup);
-                hideElement(loginPasswordGroup);
-                forgotLink.style.opacity = '0';
-                setTimeout(() => {
-                    forgotLink.style.display = 'none';
-                }, 250);
-                showElement(loginPhoneGroup);
-                if (otpSent) {
-                    showElement(loginOtpSection);
-                }
-                loginSubmit.textContent = 'دریافت کد تایید';
+                loginPhoneGroup.style.display = 'flex';
+                if (loginOtpSent) loginOtpWrap.classList.add('open');
+                loginEmailGroup.style.display = 'none';
+                loginPasswordGroup.style.display = 'none';
+                forgotLink.style.display = 'none';
+                loginSubmitBtn.textContent = loginOtpSent ? 'تایید کد' : 'دریافت کد تایید';
             }
-            updateFormsHeight?.();
         });
-        // ================= LOGIN SUBMIT =================
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // ================= LOGIN WITH PHONE =================
-            if (!isEmailMode && !otpSent) {
-                const phone = document.getElementById('loginPhone').value
-                    .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
-                    .trim();
-                if (!phone) {
-                    Message.show('شماره موبایل را وارد کنید', 'error');
+
+        // ================= VALIDATORS =================
+
+        function isValidPhone(phone) {
+            return /^09\d{9}$/.test(phone);
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidPassword(pass) {
+            return pass.length >= 8;
+        }
+
+        // ================= LOGIN =================
+
+        const loginForm = document.getElementById('loginForm');
+
+        if (loginForm) {
+
+            loginForm.addEventListener('submit', (e) => {
+
+                e.preventDefault();
+
+                // ورود با موبایل - مرحله اول
+                if (!isEmailMode && !loginOtpSent) {
+
+                    const phone = document.getElementById('loginPhone').value.trim();
+
+                    if (!phone) {
+                        Message('error', 'لطفاً شماره موبایل را وارد کنید');
+                        return;
+                    }
+
+                    if (!isValidPhone(phone)) {
+                        Message('error', 'شماره موبایل باید با صفر شروع شود و ۱۱ رقم باشد');
+                        return;
+                    }
+
+                    // ================= API =================
+                    // fetch('/api/auth/send-otp', {
+                    //     method: 'POST',
+                    //     headers: { 'Content-Type': 'application/json' },
+                    //     body: JSON.stringify({ phone })
+                    // })
+
+                    loginOtpWrap.classList.add('open');
+                    startTimer('loginTimer', 'loginResend');
+
+                    loginSubmitBtn.textContent = 'تایید کد';
+                    loginOtpSent = true;
+
+                    Message('success', 'کد تایید ارسال شد');
                     return;
                 }
-                if (!/^09\d{9}$/.test(phone)) {
-                    Message.show('شماره موبایل معتبر نیست', 'error');
+
+                // ورود با موبایل - تایید OTP
+                if (!isEmailMode && loginOtpSent) {
+
+                    const phone = document.getElementById('loginPhone').value.trim();
+
+                    const otpInputs =
+                        document.querySelectorAll('#loginOtpWrap .otp-input');
+
+                    const code =
+                        Array.from(otpInputs)
+                            .map(input => input.value)
+                            .join('');
+
+                    if (code.length < 5) {
+                        Message('error', 'لطفاً کد تایید را کامل وارد کنید');
+                        return;
+                    }
+
+                    // ================= API =================
+                    // fetch('/api/auth/verify-otp', {
+                    //     method: 'POST',
+                    //     headers: { 'Content-Type': 'application/json' },
+                    //     body: JSON.stringify({ phone, code })
+                    // })
+
+                    Message('success', 'ورود با موفقیت انجام شد');
                     return;
                 }
-                // fetch('/api/auth/send-otp', {...})
-                loginOtpSection.style.display = 'flex';
-                startTimer('loginTimer', 'loginResend');
-                loginSubmit.textContent = 'تایید کد';
-                otpSent = true;
-                Message.show('کد تایید ارسال شد', 'success');
-                return;
-            }
-            // ================= VERIFY OTP =================
-            if (!isEmailMode && otpSent) {
-                const otpInputs = document.querySelectorAll(
-                    '#loginOtpSection .otp-input'
-                );
-                const isComplete = [...otpInputs].every(
-                    input => input.value.trim() !== ''
-                );
-                if (!isComplete) {
-                    Message.show('کد تایید را کامل وارد کنید', 'error');
+
+                // ورود با ایمیل
+                const email =
+                    document.getElementById('loginEmail').value.trim();
+
+                const password =
+                    document.getElementById('loginPassword').value;
+
+                if (!email || !password) {
+                    Message('error', 'لطفاً همه فیلدها را پر کنید');
                     return;
                 }
-                const code = [...otpInputs]
-                    .map(input => input.value.trim())
-                    .join('');
+
+                if (!isValidEmail(email)) {
+                    Message('error', 'ایمیل وارد شده معتبر نیست');
+                    return;
+                }
+
+                if (!isValidPassword(password)) {
+                    Message('error', 'رمز عبور باید حداقل ۸ کاراکتر باشد');
+                    return;
+                }
+
+                // ================= API =================
+                // fetch('/api/auth/login-email', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ email, password })
+                // })
+
+                Message('success', 'ورود با موفقیت انجام شد');
+            });
+
+        }
+
+        // ================= REGISTER =================
+
+        const registerOtpWrap =
+            document.getElementById('registerOtpWrap');
+
+        const registerSubmitBtn =
+            document.getElementById('registerSubmitBtn');
+
+        let registerOtpSent = false;
+
+        const registerForm =
+            document.getElementById('registerForm');
+
+        if (registerForm) {
+
+            registerForm.addEventListener('submit', (e) => {
+
+                e.preventDefault();
+
+                // مرحله اول ثبت نام
+                if (!registerOtpSent) {
+
+                    const name =
+                        document.getElementById('registerName')?.value.trim();
+
+                    const phone =
+                        document.getElementById('registerPhone').value.trim();
+
+                    const email =
+                        document.getElementById('registerEmail')?.value.trim();
+
+                    const password =
+                        document.getElementById('registerPassword').value;
+
+                    if (!name) {
+                        Message('error', 'لطفاً نام و نام خانوادگی را وارد کنید');
+                        return;
+                    }
+
+                    if (!phone) {
+                        Message('error', 'لطفاً شماره موبایل را وارد کنید');
+                        return;
+                    }
+
+                    if (!isValidPhone(phone)) {
+                        Message('error', 'شماره موبایل معتبر نیست');
+                        return;
+                    }
+
+                    if (email && !isValidEmail(email)) {
+                        Message('error', 'ایمیل وارد شده معتبر نیست');
+                        return;
+                    }
+
+                    if (!password) {
+                        Message('error', 'لطفاً رمز عبور را وارد کنید');
+                        return;
+                    }
+
+                    if (!isValidPassword(password)) {
+                        Message('error', 'رمز عبور باید حداقل ۸ کاراکتر باشد');
+                        return;
+                    }
+
+                    // ================= API =================
+                    // fetch('/api/auth/register', {
+                    //     method: 'POST',
+                    //     headers: { 'Content-Type': 'application/json' },
+                    //     body: JSON.stringify({
+                    //         name,
+                    //         phone,
+                    //         email,
+                    //         password
+                    //     })
+                    // })
+
+                    registerOtpWrap.classList.add('open');
+
+                    startTimer(
+                        'registerTimer',
+                        'registerResend'
+                    );
+
+                    registerSubmitBtn.textContent =
+                        'تایید و ورود';
+
+                    registerOtpSent = true;
+
+                    Message('success', 'کد تایید ارسال شد');
+
+                    return;
+                }
+
+                // تایید OTP ثبت نام
+                const phone =
+                    document.getElementById('registerPhone').value.trim();
+
+                const otpInputs =
+                    document.querySelectorAll('#registerOtpWrap .otp-input');
+
+                const code =
+                    Array.from(otpInputs)
+                        .map(input => input.value)
+                        .join('');
+
+                if (code.length < 5) {
+                    Message('error', 'لطفاً کد تایید را کامل وارد کنید');
+                    return;
+                }
+
+                // ================= API =================
                 // fetch('/api/auth/verify-otp', {
                 //     method: 'POST',
-                //     body: JSON.stringify({ code })
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({
+                //         phone,
+                //         code
+                //     })
                 // })
-                Message.show('ورود با موفقیت انجام شد', 'success');
-                return;
-            }
-            // ================= LOGIN WITH EMAIL =================
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value.trim();
-            if (!email) {
-                Message.show('ایمیل را وارد کنید', 'error');
-                return;
-            }
-            if (!password) {
-                Message.show('رمز عبور را وارد کنید', 'error');
-                return;
-            }
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                Message.show('ایمیل معتبر نیست', 'error');
-                return;
-            }
-            // fetch('/api/auth/login-email', {...})
-            Message.show('ورود با موفقیت انجام شد', 'success');
-        });
-        // ================= REGISTER SUBMIT =================
-        document.getElementById('registerForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const otpSection = document.getElementById('registerOtpSection');
-            // ================= SEND REGISTER OTP =================
-            if (
-                otpSection.style.display === 'none' ||
-                otpSection.style.display === ''
-            ) {
-                const phone = document.getElementById('registerPhone').value
-                    .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
-                    .trim();
-                if (!phone) {
-                    Message.show('شماره موبایل را وارد کنید', 'error');
-                    return;
-                }
-                if (!/^09\d{9}$/.test(phone)) {
-                    Message.show('شماره موبایل معتبر نیست', 'error');
-                    return;
-                }
-                // fetch('/api/auth/register', {...})
-                otpSection.style.display = 'flex';
 
-                startTimer(
-                    'registerTimer',
-                    'registerResend'
-                );
-                document.querySelector(
-                    '#registerForm .auth-submit'
-                ).textContent = 'تایید و ورود';
-                Message.show('کد تایید ارسال شد', 'success');
-                return;
-            }
-            // ================= VERIFY REGISTER OTP =================
-            const otpInputs = document.querySelectorAll(
-                '#registerOtpSection .otp-input'
-            );
-            const isComplete = [...otpInputs].every(
-                input => input.value.trim() !== ''
-            );
-            if (!isComplete) {
-                Message.show('کد تایید را کامل وارد کنید', 'error');
-                return;
-            }
-            const code = [...otpInputs]
-                .map(input => input.value.trim())
-                .join('');
-            // fetch('/api/auth/verify-otp', {
-            //     method: 'POST',
-            //     body: JSON.stringify({ code })
-            // })
-            Message.show('ثبت نام با موفقیت انجام شد', 'success');
-        });
-        // ================= FORGOT PASSWORD =================
-        forgotLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginPhoneGroup.style.display = 'none';
-            loginEmailGroup.style.display = 'none';
-            loginPasswordGroup.style.display = 'none';
-            loginOtpSection.style.display = 'none';
-            forgotLink.style.display = 'none';
-            loginSubmit.style.display = 'none';
-            document.querySelector('.login-method-wrap').style.display = 'none';
-            document.getElementById('forgotForm').classList.add('active');
-        });
-        document.getElementById('backFromForgot').addEventListener('click', () => {
-            const forgotForm = document.getElementById('forgotForm');
-            forgotForm.classList.add('closing');
-            setTimeout(() => {
-                forgotForm.classList.remove('closing');
-                forgotForm.classList.remove('active');
-                if (isEmailMode) {
-                    loginEmailGroup.style.display = 'flex';
-                    loginPasswordGroup.style.display = 'flex';
-                    forgotLink.style.display = 'block';
-                    loginSubmit.style.display = 'block';
-                } else {
-                    loginPhoneGroup.style.display = 'flex';
-                    loginSubmit.style.display = 'block';
-                    if (otpSent) {
-                        loginOtpSection.style.display = 'flex';
-                    }
-                }
-                document.querySelector('.login-method-wrap').style.display = 'flex';
-                updateFormsHeight?.();
-
-            }, 300);
-        });
-        document
-            .getElementById('forgotSubmit')
-            .addEventListener('click', async () => {
-                const email =
-                    document.querySelector(
-                        '#forgotForm input[type="email"]'
-                    ).value.trim();
-                if (!email) {
-                    Message.show(
-                        'ایمیل را وارد کنید',
-                        'error'
-                    );
-                    return;
-                }
-                else
-                    Message.show(
-                        'رمز عبور ارسال شد',
-                        'success'
-                    );
-                return;
-                // API:
-                // POST /api/auth/forgot-password
-                // body:
-                // {
-                //     email
-                // }
-
-                // response:
-                // {
-                //     success: true,
-                //     message: "Recovery email sent"
-                // }
+                Message('success', 'ثبت نام با موفقیت انجام شد');
             });
+
+        }
+
+        // ================= FORGOT PASSWORD =================
+
+        const forgotOverlay =
+            document.getElementById('forgotOverlay');
+
+        const forgotSubmitBtn =
+            document.getElementById('forgotSubmitBtn');
+
+        const backFromForgot =
+            document.getElementById('backFromForgot');
+
+        if (forgotLink && forgotOverlay) {
+
+            forgotLink.addEventListener('click', (e) => {
+
+                e.preventDefault();
+
+                forgotOverlay.classList.add('open');
+            });
+
+        }
+
+        if (backFromForgot && forgotOverlay) {
+
+            backFromForgot.addEventListener('click', () => {
+
+                forgotOverlay.classList.remove('open');
+            });
+
+        }
+
+        if (forgotSubmitBtn) {
+
+            forgotSubmitBtn.addEventListener('click', () => {
+
+                const email =
+                    document
+                        .querySelector('#forgotOverlay .auth-input')
+                        .value
+                        .trim();
+
+                if (!email) {
+                    Message('error', 'لطفاً ایمیل خود را وارد کنید');
+                    return;
+                }
+
+                if (!isValidEmail(email)) {
+                    Message('error', 'ایمیل وارد شده معتبر نیست');
+                    return;
+                }
+
+                // ================= API =================
+                // fetch('/api/auth/forgot-password', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ email })
+                // })
+
+                Message(
+                    'success',
+                    'لینک بازیابی به ایمیل شما ارسال شد'
+                );
+            });
+
+        }
+
+        // // ================= FORGOT PASSWORD OVERLAY =================
+        // const forgotOverlay = document.getElementById('forgotOverlay');
+
+        // forgotLink.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        //     forgotOverlay.classList.add('open');
+        // });
+
+        // document.getElementById('backFromForgot').addEventListener('click', () => {
+        //     forgotOverlay.classList.remove('open');
+        // });
+
+        // document.getElementById('forgotSubmitBtn').addEventListener('click', () => {
+        //     const email = document.querySelector('#forgotOverlay .auth-input').value;
+        //     if (!email) return;
+        //     // fetch('/api/auth/forgot-password', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ email }) })
+        // });
+
         // ================= PASSWORD TOGGLE =================
         ['login', 'register'].forEach(prefix => {
             const toggle = document.getElementById(prefix + 'PassToggle');
@@ -319,22 +425,20 @@
                 toggle.querySelector('i').className = isPass ? 'ti ti-eye-off' : 'ti ti-eye';
             });
         });
+
         // ================= OTP AUTO FOCUS =================
         document.querySelectorAll('.otp-inputs').forEach(wrap => {
             const inputs = wrap.querySelectorAll('.otp-input');
             inputs.forEach((input, i) => {
                 input.addEventListener('input', () => {
-                    input.classList.toggle('filled', !!input.value);
                     if (input.value && i < inputs.length - 1) inputs[i + 1].focus();
                 });
                 input.addEventListener('keydown', (e) => {
-                    if (e.key === 'Backspace' && !input.value && i > 0) {
-                        inputs[i - 1].classList.remove('filled');
-                        inputs[i - 1].focus();
-                    }
+                    if (e.key === 'Backspace' && !input.value && i > 0) inputs[i - 1].focus();
                 });
             });
         });
+
         // ================= OTP TIMER =================
         function startTimer(timerId, resendId) {
             let seconds = 120;
@@ -342,22 +446,24 @@
             const resendEl = document.getElementById(resendId);
             resendEl.style.display = 'none';
             timerEl.style.display = 'inline';
+
             const interval = setInterval(() => {
                 seconds--;
                 const m = String(Math.floor(seconds / 60)).padStart(2, '0');
                 const s = String(seconds % 60).padStart(2, '0');
                 timerEl.textContent = `${m}:${s}`;
+
                 if (seconds <= 0) {
                     clearInterval(interval);
                     timerEl.style.display = 'none';
                     resendEl.style.display = 'inline';
                 }
             }, 1000);
+
             resendEl.onclick = () => {
                 resendEl.style.display = 'none';
                 timerEl.style.display = 'inline';
                 seconds = 120;
                 // fetch('/api/auth/resend-otp', { method: 'POST' })
             };
-        } console.log(Message); console.log(document.getElementById('loginEmail'));
-        console.log(document.getElementById('loginPassword'));
+        }

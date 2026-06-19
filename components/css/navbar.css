@@ -1,25 +1,5 @@
-/* ===================== nav & body ===================== */
-html, body {
-  font-family: sans-serif;
-  background-color: var(--clr-bg);
-  background-image: radial-gradient(circle, var(--clr-bg-dot) 0.8px, transparent 0.8px);
-  background-size: 25px 10px;
-  margin: 0;
-  padding: 0;
-}
+/* ===================== nav ===================== */
 
-* { box-sizing: border-box; }
-
-body {
-  min-height: 100vh;
-}
-
-body::-webkit-scrollbar       { width: var(--sb-size); }
-body::-webkit-scrollbar-track { background: var(--sb-track-color); border-radius: 4px; }
-body::-webkit-scrollbar-thumb { background: var(--sb-thumb-color); border-radius: 4px; }
-@supports not selector(::-webkit-scrollbar) {
-  body { scrollbar-color: var(--sb-thumb-color) var(--sb-track-color); }
-}
 
 .nav-wrap {
   position: fixed; top: 0; left: 0; right: 0;
@@ -212,3 +192,6 @@ body::-webkit-scrollbar-thumb { background: var(--sb-thumb-color); border-radius
   .content { padding: 90px 14px 60px; }
 }
 /* ====================================================== */
+.ti-shopping-cart{
+  font-size: 18px;
+}

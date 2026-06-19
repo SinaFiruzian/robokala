@@ -1,17 +1,103 @@
-// ==================== gallery ==================== 
-const mainImage = document.getElementById("mainProductImage");
-const thumbs = document.querySelectorAll(".thumb");
-thumbs.forEach(thumb => {
-    thumb.addEventListener("click", () => {
-        const thumbImage = thumb.querySelector("img");
-        mainImage.src = thumbImage.src;
-        document
-            .querySelector(".thumb.active")
-            ?.classList.remove("active");
+/// ==================== GALLERY ====================
 
-        thumb.classList.add("active");
+const mainImage = document.getElementById("mainProductImage");
+const thumbs = [...document.querySelectorAll(".thumb")];
+
+const prevBtn = document.querySelector(".gallery-nav.prev");
+const nextBtn = document.querySelector(".gallery-nav.next");
+
+let currentIndex = 0;
+
+// ---------- render ----------
+function renderImage(index) {
+
+    currentIndex = index;
+
+    mainImage.src =
+        thumbs[index].querySelector("img").src;
+
+    document
+        .querySelector(".thumb.active")
+        ?.classList.remove("active");
+
+    thumbs[index].classList.add("active");
+}
+
+// ---------- thumb click ----------
+thumbs.forEach((thumb, index) => {
+
+    thumb.addEventListener("click", () => {
+        renderImage(index);
     });
+
 });
+
+// ---------- next ----------
+function nextImage() {
+
+    currentIndex++;
+
+    if (currentIndex >= thumbs.length) {
+        currentIndex = 0;
+    }
+
+    renderImage(currentIndex);
+}
+
+// ---------- prev ----------
+function prevImage() {
+
+    currentIndex--;
+
+    if (currentIndex < 0) {
+        currentIndex = thumbs.length - 1;
+    }
+
+    renderImage(currentIndex);
+}
+
+// ---------- buttons ----------
+nextBtn?.addEventListener("click", nextImage);
+prevBtn?.addEventListener("click", prevImage);
+
+// ---------- swipe ----------
+let startX = 0;
+
+mainImage.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+
+mainImage.addEventListener("touchend", e => {
+
+    const endX = e.changedTouches[0].clientX;
+
+    const diff = startX - endX;
+
+    if (Math.abs(diff) < 50) return;
+
+    if (diff > 0) {
+        nextImage();
+    } else {
+        prevImage();
+    }
+
+});
+
+// ---------- keyboard ----------
+document.addEventListener("keydown", e => {
+
+    if (e.key === "ArrowLeft") {
+        nextImage();
+    }
+
+    if (e.key === "ArrowRight") {
+        prevImage();
+    }
+
+});
+
+// ---------- start ----------
+renderImage(0);
 // =================================================
 
 // ==================== add-favorite ==================== 

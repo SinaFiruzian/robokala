@@ -6,6 +6,7 @@
            padding: 0 20px;
            display: grid;
            grid-template-columns: 1fr 380px;
+            grid-column: 1 / -1;
            gap: 30px;
            align-items: start;
        }

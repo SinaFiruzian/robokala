@@ -118,7 +118,7 @@
         .wish-btn.active {
             background: var(--clr-grad-main);
             border-color: var(--clr-border-purple);
-            color: #fff;
+            color: var(--clr-text-white);
         }
 
         .wish-btn.active .ti {
@@ -192,7 +192,7 @@
 
         .price-box .discount-badge {
             background: var(--clr-accent-grad);
-            color: #fff;
+            color: var(--clr-text-white);
             padding: 4px 12px;
             border-radius: 999px;
             font-size: .85rem;
@@ -205,7 +205,7 @@
             border-radius: 25px;
             font-size: 1rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--clr-text-white);
             background: var(--clr-grad-main);
             transition: .3s;
         }
@@ -227,7 +227,7 @@
             border: none;
             cursor: pointer;
             background: var(--clr-grad-main);
-            color: #fff;
+            color: var(--clr-text-white);
             font-size: 1.5rem;
             display: flex;
             align-items: center;
@@ -269,8 +269,8 @@
             border-radius: 50%;
             border: none;
             cursor: pointer;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
+            background: var(--clr-surface-glass);
+            color: var(--clr-text-white);
             font-size: 1rem;
             display: flex;
             align-items: center;
@@ -280,13 +280,13 @@
         }
 
         .counter-btn:hover {
-            background: rgba(255, 255, 255, 0.35);
+            background: var(--clr-surface-white);
         }
 
         .counter-num {
             flex: 1;
             text-align: center;
-            color: #fff;
+            color: var(--clr-text-white);
             font-size: 1.1rem;
             font-weight: 700;
         }
@@ -363,7 +363,6 @@
 
         @media(max-width:768px) {
             .product-page {
-                /* margin: 90px auto; */
                 padding: 20px 15px;
                 grid-template-columns: 1fr;
                 width: calc(100% - 0px);
